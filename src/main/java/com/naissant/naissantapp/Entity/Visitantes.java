@@ -1,6 +1,6 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Entity;
@@ -23,7 +23,7 @@ public class Visitantes {
     private Integer archivoId;
     @JoinColumn(name = "id_persona", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Personas personaId;
+    private Persons personaId;
     @Column
     private String user_create;
     @Column
@@ -50,11 +50,11 @@ public class Visitantes {
         this.archivoId = archivoId;
     }
 
-    public Personas getPersonaId() {
+    public Persons getPersonaId() {
         return personaId;
     }
 
-    public void setPersonaId(Personas personaId) {
+    public void setPersonaId(Persons personaId) {
         this.personaId = personaId;
     }
 

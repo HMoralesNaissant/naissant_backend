@@ -1,7 +1,8 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2021
+ * Dpto. Sistemas - Naissant 2025
  **/
+
 package com.naissant.naissantapp.Controller;
 
 import com.naissant.naissantapp.Entity.Areas;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/areas"})
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
 public class AreasController {
 
@@ -74,15 +77,14 @@ public class AreasController {
         }
     }
     
-    @GetMapping(path = {"/findByEmpresa/{id_empresa}"})
-    public ResponseEntity listarByIdEmpresa(@PathVariable("id_empresa") int id_empresa) {
+    @GetMapping(path = {"/findByCompany/{id_company}"})
+    public ResponseEntity listarByIdCompany(@PathVariable("id_company") int id_company) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdEmpresa(id_empresa), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByIdCompany(id_company), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
                     .body(new ResponseDto("No se pudo completar", false));
         }
     }
-
 }

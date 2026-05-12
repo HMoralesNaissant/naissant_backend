@@ -1,7 +1,7 @@
 
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Entity;
@@ -23,7 +23,7 @@ public class Reportados {
     private int id;
     @JoinColumn(name = "id_persona", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Personas personaId;
+    private Persons personaId;
     @Column
     private Date fecha_reporte;
     @Column
@@ -52,11 +52,11 @@ public class Reportados {
         this.id = id;
     }
 
-    public Personas getPersonaId() {
+    public Persons getPersonaId() {
         return personaId;
     }
 
-    public void setPersonaId(Personas personaId) {
+    public void setPersonaId(Persons personaId) {
         this.personaId = personaId;
     }
 

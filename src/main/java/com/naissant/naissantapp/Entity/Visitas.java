@@ -1,7 +1,7 @@
 
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Entity;
@@ -22,7 +22,7 @@ public class Visitas {
     private int id;
     @JoinColumn(name = "id_persona", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Personas personaId;
+    private Persons personaId;
     @Column
     private String empresa;
     @JoinColumn(name = "id_area", referencedColumnName = "id")
@@ -32,7 +32,7 @@ public class Visitas {
     private String empleado;
     @JoinColumn(name = "id_cargo", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Cargos cargoId;
+    private Charges cargoId;
     @Column
     private Date fecha_visita;
     @Column
@@ -61,11 +61,11 @@ public class Visitas {
         this.id = id;
     }
 
-    public Personas getPersonaId() {
+    public Persons getPersonaId() {
         return personaId;
     }
 
-    public void setPersonaId(Personas personaId) {
+    public void setPersonaId(Persons personaId) {
         this.personaId = personaId;
     }
 
@@ -93,11 +93,11 @@ public class Visitas {
         this.empleado = empleado;
     }
 
-    public Cargos getCargoId() {
+    public Charges getCargoId() {
         return cargoId;
     }
 
-    public void setCargoId(Cargos cargoId) {
+    public void setCargoId(Charges cargoId) {
         this.cargoId = cargoId;
     }
 

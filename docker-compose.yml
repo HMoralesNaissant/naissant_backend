@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t_p@ssw0rd
+      MYSQL_DATABASE: naissant
+      MYSQL_USER: naissant-dev
+      MYSQL_PASSWORD: naissant_p@ssw0rd
+    ports:
+      - 33006:3306
+
+
+networks:
+  naissant_dev:
+    # (this is just an example, not intended to be a production configuration)

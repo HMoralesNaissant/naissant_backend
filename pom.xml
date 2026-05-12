@@ -12,7 +12,7 @@
     <version>1.0.0</version>
     <name>Naissant App</name>
     <description>Proyecto en Spring Boot para el Dashboard Naissant</description>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>packaging-->
      
     <properties>
         <java.version>1.8</java.version>
@@ -49,12 +49,6 @@
             <artifactId>jasperreports</artifactId>
             <version>6.17.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-       
     </dependencies>
 
     <build>
@@ -69,3 +63,6 @@
    
   
 </project>
+
+<!-- Desarrollo por: Carlos Pinto -->
+<!-- Dpto. Sistemas - Naissant 2025 -->

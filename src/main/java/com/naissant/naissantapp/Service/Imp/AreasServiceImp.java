@@ -1,13 +1,13 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2021
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Service.Imp;
 
-import com.naissant.naissantapp.Repository.AreasRepositorio;
 import com.naissant.naissantapp.Entity.Areas;
 import com.naissant.naissantapp.Service.AreasService;
+import com.naissant.naissantapp.Repository.AreasRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,31 +15,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class AreasServiceImp implements AreasService{
     @Autowired
-    private AreasRepositorio repositorio;
+    private AreasRepository repository;
     
     @Override
     public List<Areas> listar() {
-        return repositorio.findAll();
+        return repository.findAll();
     }
 
     @Override
     public Areas listarId(int id) {
-        return repositorio.findById(id).get();
+        return repository.findById(id).get();
     }
 
     @Override
     public Areas add(Areas a) {
-        return repositorio.save(a);
+        return repository.save(a);
     }
 
     @Override
     public Areas edit(Areas a) {
-        return repositorio.save(a);
+        return repository.save(a);
     }
     
     @Override
-    public List<Areas> listarByIdEmpresa(int id_empresa) {
-        return repositorio.findByEmpresaId_Id(id_empresa);
+    public List<Areas> listarByIdCompany(int id_company) {
+        return repository.findByCompanyId_Id(id_company);
     }
 
     @Override

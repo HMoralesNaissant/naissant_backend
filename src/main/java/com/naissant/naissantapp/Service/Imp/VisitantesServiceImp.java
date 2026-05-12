@@ -1,20 +1,18 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Service.Imp;
 
-import com.naissant.naissantapp.Constants.GenArchivosTypes;
+import com.naissant.naissantapp.Constants.GenFilesTypes;
 import com.naissant.naissantapp.Repository.VisitantesRepositorio;
 import com.naissant.naissantapp.Entity.Visitantes;
-import com.naissant.naissantapp.Entity.GenArchivos;
-import com.naissant.naissantapp.Repository.GenArchivosRepository;
+import com.naissant.naissantapp.Entity.GenFiles;
 import com.naissant.naissantapp.Service.VisitantesService;
-import com.naissant.naissantapp.Service.GenArchivosService;
 import java.nio.file.Paths;
 import java.util.List;
-import com.naissant.naissantapp.message.ProyectosFile;
+import com.naissant.naissantapp.message.ProyectsFile;
 import java.io.IOException;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +20,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import com.naissant.naissantapp.Repository.GenFilesRepository;
+import com.naissant.naissantapp.Service.GenFilesService;
 
 @Service
 public class VisitantesServiceImp implements VisitantesService{
     
     private VisitantesRepositorio repositorio;
-    private final GenArchivosRepository fileRepositorio;
-    private final GenArchivosService filesService;
+    private final GenFilesRepository fileRepositorio;
+    private final GenFilesService filesService;
     private final String filesPath;
     
     @Autowired
     public VisitantesServiceImp(
             VisitantesRepositorio repositorio,
-            GenArchivosRepository fileRepositorio,
-            GenArchivosService filesService,
+            GenFilesRepository fileRepositorio,
+            GenFilesService filesService,
             @Value("${filesdir.photos_visit}") String filesPath) {
         this.repositorio = repositorio;
         this.fileRepositorio = fileRepositorio;
@@ -75,7 +75,7 @@ public class VisitantesServiceImp implements VisitantesService{
     }
     
     @Override
-    public ProyectosFile saveFotoVisita(Integer visitanteId,
+    public ProyectsFile saveFotoVisita(Integer visitanteId,
             MultipartFile[] files, String descripcion) throws IOException {
 
         Visitantes visitante = repositorio.findById(visitanteId).get();
@@ -83,21 +83,21 @@ public class VisitantesServiceImp implements VisitantesService{
 
         if (file != null) {
             if (!Objects.isNull(visitante.getArchivoId())) {
-                GenArchivos oldPhoto = filesService.listarId(visitante.getArchivoId());
+                GenFiles oldPhoto = filesService.listarId(visitante.getArchivoId());
                 filesService.deleteFileById(oldPhoto.getId());
                 visitante.setArchivoId(null);
             }
             String finalPath = Paths.get(filesPath, "" + visitanteId).toString();
-            GenArchivos fotoPerfil = filesService.saveFile( finalPath, file[0], descripcion, GenArchivosTypes.IMAGE);
+            GenFiles fotoPerfil = filesService.saveFile(finalPath, file[0], descripcion, GenFilesTypes.IMAGE);
             visitante.setArchivoId(fotoPerfil.getId());
             edit(visitante);
         }
-        return new ProyectosFile("Se subieron los archivos correctamente ");
+        return new ProyectsFile("Se subieron los archivos correctamente ");
     }
     
     @Override
-    public List<GenArchivos> listarByNombreArchivo(String nombre_archivo) {
-        return filesService.listarByNombreArchivo(nombre_archivo);
+    public List<GenFiles> listarByNombreArchivo(String name_file) {
+        return filesService.listarByNameFile(name_file);
     }
 
     @Override

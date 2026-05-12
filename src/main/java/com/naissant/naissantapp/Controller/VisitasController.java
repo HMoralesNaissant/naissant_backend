@@ -1,6 +1,6 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Controller;
@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.naissant.naissantapp.Service.VisitasService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping({"/visitas"})
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
 public class VisitasController {
 

@@ -1,6 +1,6 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2021
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Service;
@@ -12,9 +12,9 @@ import java.util.List;
 public interface AreasService {
     List<Areas>listar();
     Areas listarId(int id);
-    Areas add(Areas e);
-    Areas edit(Areas e);
+    Areas add(Areas a);
+    Areas edit(Areas a);
     Areas delete(int id);
     
-    List<Areas>listarByIdEmpresa(int id_empresa);
+    List<Areas>listarByIdCompany(int id_company);
 }

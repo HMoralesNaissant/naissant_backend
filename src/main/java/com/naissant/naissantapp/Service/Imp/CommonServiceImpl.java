@@ -1,7 +1,8 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2021
+ * Dpto. Sistemas - Naissant 2025
  **/
+
 package com.naissant.naissantapp.Service.Imp;
 
 import com.naissant.naissantapp.Entity.CommonEntity;

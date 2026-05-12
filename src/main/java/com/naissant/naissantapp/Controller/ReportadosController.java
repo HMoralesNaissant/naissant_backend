@@ -1,6 +1,6 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas UniMetro - 2022
+ * Dpto. Sistemas - Naissant 2025
  **/
 
 package com.naissant.naissantapp.Controller;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping({"/reportados"})
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
 public class ReportadosController {
 
