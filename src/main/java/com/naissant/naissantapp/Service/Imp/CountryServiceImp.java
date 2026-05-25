@@ -5,40 +5,40 @@
 
 package com.naissant.naissantapp.Service.Imp;
 
-import com.naissant.naissantapp.Repository.CountrysRepository;
-import com.naissant.naissantapp.Entity.Countrys;
-import com.naissant.naissantapp.Service.CountrysService;
+import com.naissant.naissantapp.Entity.Country;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.naissant.naissantapp.Repository.CountryRepository;
+import com.naissant.naissantapp.Service.CountryService;
 
 @Service
-public class CountrysServiceImp implements CountrysService{
+public class CountryServiceImp implements CountryService{
     @Autowired
-    private CountrysRepository repositorio;
+    private CountryRepository repositorio;
     
     @Override
-    public List<Countrys> listar() {
+    public List<Country> listar() {
         return repositorio.findAll();
     }
 
     @Override
-    public Countrys listarId(int id) {
+    public Country listarId(int id) {
         return repositorio.findById(id).get();
     }
 
     @Override
-    public Countrys add(Countrys c) {
+    public Country add(Country c) {
         return repositorio.save(c);
     }
 
     @Override
-    public Countrys edit(Countrys a) {
+    public Country edit(Country a) {
         return repositorio.save(a);
     }
     
     @Override
-    public Countrys delete(int id) {
+    public Country delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.
     }

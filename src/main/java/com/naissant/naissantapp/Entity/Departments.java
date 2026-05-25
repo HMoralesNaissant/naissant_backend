@@ -24,7 +24,7 @@ public class Departments {
     private String description;
     @JoinColumn(name = "id_country", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Countrys countryId;
+    private Country countryId;
     @Column
     private String dpts_code;
     @Column
@@ -54,11 +54,11 @@ public class Departments {
         this.description = description;
     }
 
-    public Countrys getCountryId() {
+    public Country getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Countrys countryId) {
+    public void setCountryId(Country countryId) {
         this.countryId = countryId;
     }
 

@@ -5,9 +5,9 @@
 
 package com.naissant.naissantapp.Repository;
 
-import com.naissant.naissantapp.Entity.Countrys;
+import com.naissant.naissantapp.Entity.Country;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @org.springframework.stereotype.Repository
-public interface CountrysRepository extends JpaRepository<Countrys, Integer>{}
+public interface CountryRepository extends JpaRepository<Country, Integer>{}

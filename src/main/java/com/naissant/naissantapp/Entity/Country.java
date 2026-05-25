@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "gen_countrys")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Countrys {
+public class Country {
     
     
     @Id

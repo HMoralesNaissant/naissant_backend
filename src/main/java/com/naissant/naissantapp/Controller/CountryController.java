@@ -5,8 +5,8 @@
 
 package com.naissant.naissantapp.Controller;
 
-import com.naissant.naissantapp.Entity.Countrys;
-import com.naissant.naissantapp.Service.CountrysService;
+import com.naissant.naissantapp.Entity.Country;
+import com.naissant.naissantapp.Service.CountryService;
 import com.naissant.naissantapp.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,15 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/countrys"})
+@RequestMapping({"/country"})
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
-public class CountrysController {
+public class CountryController {
 
     @Autowired
-    CountrysService service;
+    CountryService service;
 
-    private final Logger LOG = LoggerFactory.getLogger(CountrysController.class);
+    private final Logger LOG = LoggerFactory.getLogger(CountryController.class);
 
     @GetMapping
     public ResponseEntity listar() {
@@ -44,7 +44,7 @@ public class CountrysController {
     }
     
     @PostMapping
-    public ResponseEntity agregar(@RequestBody Countrys c) {
+    public ResponseEntity agregar(@RequestBody Country c) {
         try {
             return ResponseEntity.ok(new ResponseDto(service.add(c), true));
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class CountrysController {
     }
         
     @PutMapping(path = {"/{id}"})
-    public ResponseEntity editar(@RequestBody Countrys c, @PathVariable("id") int id) {
+    public ResponseEntity editar(@RequestBody Country c, @PathVariable("id") int id) {
         try {
             c.setId(id);
             return ResponseEntity.ok(new ResponseDto(service.edit(c), true));
