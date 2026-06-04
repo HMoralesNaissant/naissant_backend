@@ -1,16 +1,37 @@
 services:
   db:
-    image: mysql
-    restart: always
+    image: 'postgres:14-alpine'
+    container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: r00t_p@ssw0rd
-      MYSQL_DATABASE: naissant
-      MYSQL_USER: naissant-dev
-      MYSQL_PASSWORD: naissant_p@ssw0rd
+      POSTGRES_DB: naissant
+      POSTGRES_USER: naissant-dev
+      POSTGRES_PASSWORD: naissant_p@ssw0rd
     ports:
-      - 33006:3306
+      - "54321:5432"
+    volumes:
+      - ~/postgres-data/naissant:/var/lib/postgresql/data
+    networks:
+      - naissant_dev
 
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    ports:
+      - "8080"
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/naissant
+      - SPRING_DATASOURCE_USERNAME=naissant-dev
+      - SPRING_DATASOURCE_PASSWORD=naissant_p@ssw0rd
+    networks:
+      - naissant_dev
 
 networks:
   naissant_dev:
-    # (this is just an example, not intended to be a production configuration)
+
+
+#sudo ufw allow 54321/tcp
+DashboardWeb*

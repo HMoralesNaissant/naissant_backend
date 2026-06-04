@@ -70,7 +70,7 @@ public class UsersServiceImp implements UsersService {
 
     @Override
     public List<Users> listarByUser(String user) {
-        return repository.findByUser(user);
+        return repository.findByUserName(user);
     }
 
     @Override

@@ -24,8 +24,8 @@ public class Users {
     @JoinColumn(name = "id_profile", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Profiles profileId;
-    @Column
-    private String user;
+    @Column(name = "user_name")
+    private String userName;
     @Column
      //@JsonIgnore
     private String password;
@@ -64,14 +64,6 @@ public class Users {
 
     public void setProfileId(Profiles profileId) {
         this.profileId = profileId;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public String getPassword() {
@@ -128,6 +120,14 @@ public class Users {
 
     public void setDate_update(Date date_update) {
         this.date_update = date_update;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void add() {
