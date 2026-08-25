@@ -7,14 +7,14 @@ WORKDIR /build
 # Copy Maven descriptor first to leverage Docker layer caching
 COPY pom.xml .
 
-# Download dependencies
-RUN mvn dependency:go-offline
+# Download dependencies with cache mount for faster builds
+RUN --mount=type=cache,target=/root/.m2 mvn dependency:go-offline
 
 # Copy the application source
 COPY src ./src
 
-# Build the application
-RUN mvn clean package -DskipTests
+# Build the application with cache mount
+RUN --mount=type=cache,target=/root/.m2 mvn clean package -DskipTests
 
 # ---------- Runtime stage ----------
 FROM amazoncorretto:8-alpine
