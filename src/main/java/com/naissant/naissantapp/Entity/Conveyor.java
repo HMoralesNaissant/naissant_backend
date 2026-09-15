@@ -1,18 +1,19 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas - Naissant 2025
+ * Dpto. Sistemas - Naissant 2026
  **/
 
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "conf_wineries")
+@Table(name = "disp_conveyor")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Wineries {
+public class Conveyor {
     
     
     @Id
@@ -25,10 +26,15 @@ public class Wineries {
     @Column
     private String description;
     @Column
-    private int code_winerie;
-    @JoinColumn(name = "id_city", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Citys cityId;
+    private String nit;
+    @Column
+    private String web_site;
+    @Column
+    private String adviser;
+    @Column
+    private Double cellular;
+    @Column
+    private String email;
     @Column
     private char status;
     @Column
@@ -49,14 +55,6 @@ public class Wineries {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Company getCompanyId() {
         return companyId;
     }
@@ -65,20 +63,52 @@ public class Wineries {
         this.companyId = companyId;
     }
 
-    public int getCode_winerie() {
-        return code_winerie;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCode_winerie(int code_winerie) {
-        this.code_winerie = code_winerie;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Citys getCityId() {
-        return cityId;
+    public String getNit() {
+        return nit;
     }
 
-    public void setCityId(Citys cityId) {
-        this.cityId = cityId;
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public String getWeb_site() {
+        return web_site;
+    }
+
+    public void setWeb_site(String web_site) {
+        this.web_site = web_site;
+    }
+
+    public String getAdviser() {
+        return adviser;
+    }
+
+    public void setAdviser(String adviser) {
+        this.adviser = adviser;
+    }
+
+    public Double getCellular() {
+        return cellular;
+    }
+
+    public void setCellular(Double cellular) {
+        this.cellular = cellular;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public char getStatus() {

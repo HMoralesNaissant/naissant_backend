@@ -1,34 +1,34 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas - Naissant 2025
+ * Dpto. Sistemas - Naissant 2026
  **/
 
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "conf_wineries")
+@Table(name = "disp_conveyor_accounts")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Wineries {
+public class ConveyorAccounts {
     
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @JoinColumn(name = "id_company", referencedColumnName = "id")
+    @JoinColumn(name = "id_conveyor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Company companyId;
+    private Conveyor conveyorId;
     @Column
     private String description;
     @Column
-    private int code_winerie;
-    @JoinColumn(name = "id_city", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Citys cityId;
+    private Double accounts;
+    @Column
+    private char collection;
     @Column
     private char status;
     @Column
@@ -40,13 +40,21 @@ public class Wineries {
     @Column
     private Date date_update;
 
-    
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Conveyor getConveyorId() {
+        return conveyorId;
+    }
+
+    public void setConveyorId(Conveyor conveyorId) {
+        this.conveyorId = conveyorId;
     }
 
     public String getDescription() {
@@ -57,28 +65,20 @@ public class Wineries {
         this.description = description;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Double getAccounts() {
+        return accounts;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setAccounts(Double accounts) {
+        this.accounts = accounts;
     }
 
-    public int getCode_winerie() {
-        return code_winerie;
+    public char getCollection() {
+        return collection;
     }
 
-    public void setCode_winerie(int code_winerie) {
-        this.code_winerie = code_winerie;
-    }
-
-    public Citys getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Citys cityId) {
-        this.cityId = cityId;
+    public void setCollection(char collection) {
+        this.collection = collection;
     }
 
     public char getStatus() {
@@ -120,5 +120,4 @@ public class Wineries {
     public void setDate_update(Date date_update) {
         this.date_update = date_update;
     }
-    
 }

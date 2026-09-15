@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface WineriesRepository extends JpaRepository<Wineries, Integer>{
     
     List<Wineries>findByCompanyId_Id(int id_company);
+    List<Wineries>findByCityId_Id(int id_city);
 }

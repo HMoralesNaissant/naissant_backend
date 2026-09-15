@@ -17,4 +17,5 @@ public interface WineriesService {
     Wineries delete(int id);
     
     List<Wineries>listarByIdCompany(int id_company);
+    List<Wineries>listarByIdCity(int id_city);
 }

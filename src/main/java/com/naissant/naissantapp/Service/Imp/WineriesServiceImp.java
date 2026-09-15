@@ -43,6 +43,11 @@ public class WineriesServiceImp implements WineriesService{
     }
 
     @Override
+    public List<Wineries> listarByIdCity(int id_city) {
+        return repository.findByCityId_Id(id_city);
+    }
+
+    @Override
     public Wineries delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.

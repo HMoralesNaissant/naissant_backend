@@ -1,36 +1,29 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas - Naissant 2025
+ * Dpto. Sistemas - Naissant 2026
  **/
 
 package com.naissant.naissantapp.Controller;
 
-import com.naissant.naissantapp.Entity.Wineries;
-import com.naissant.naissantapp.Service.WineriesService;
+import com.naissant.naissantapp.Entity.DispatchsControl;
+import com.naissant.naissantapp.Service.DispatchsControlService;
 import com.naissant.naissantapp.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping({"/wineries"})
+@RequestMapping({"/dispatchsControl"})
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
-public class WineriesController {
+public class DispatchsControlController {
 
     @Autowired
-    WineriesService service;
+    DispatchsControlService service;
 
-    private final Logger LOG = LoggerFactory.getLogger(WineriesController.class);
+    private final Logger LOG = LoggerFactory.getLogger(DispatchsControlController.class);
 
     @GetMapping
     public ResponseEntity listar() {
@@ -44,9 +37,9 @@ public class WineriesController {
     }
     
     @PostMapping
-    public ResponseEntity agregar(@RequestBody Wineries w) {
+    public ResponseEntity agregar(@RequestBody DispatchsControl d) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.add(w), true));
+            return ResponseEntity.ok(new ResponseDto(service.add(d), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
@@ -66,10 +59,10 @@ public class WineriesController {
     }
         
     @PutMapping(path = {"/{id}"})
-    public ResponseEntity editar(@RequestBody Wineries w, @PathVariable("id") int id) {
+    public ResponseEntity editar(@RequestBody DispatchsControl d, @PathVariable("id") int id) {
         try {
-            w.setId(id);
-            return ResponseEntity.ok(new ResponseDto(service.edit(w), true));
+            d.setId(id);
+            return ResponseEntity.ok(new ResponseDto(service.edit(d), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
@@ -77,21 +70,10 @@ public class WineriesController {
         }
     }
     
-    @GetMapping(path = {"/findByCompany/{id_company}"})
-    public ResponseEntity listarByIdCompany(@PathVariable("id_company") int id_company) {
+    @GetMapping(path = {"/findByInvoice/{id_invoice}"})
+    public ResponseEntity listarByIdInvoice(@PathVariable("id_invoice") int id_invoice) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdCompany(id_company), true));
-        } catch (Exception e) {
-            LOG.error("No se pudo completar ", e);
-            return ResponseEntity.internalServerError()
-                    .body(new ResponseDto("No se pudo completar", false));
-        }
-    }
-
-    @GetMapping(path = {"/findByCity/{id_city}"})
-    public ResponseEntity listarByIdCity(@PathVariable("id_city") int id_city) {
-        try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdCity(id_city), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByIdInvoice(id_invoice), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()

@@ -1,34 +1,41 @@
 /**
  * Desarrollo por: Ing. Harry Morales
- * Dpto. Sistemas - Naissant 2025
+ * Dpto. Sistemas - Naissant 2026
  **/
 
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
-@Table(name = "conf_wineries")
+@Table(name = "com_invoices_detail")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Wineries {
+public class InvoicesDetail {
     
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @JoinColumn(name = "id_company", referencedColumnName = "id")
+    @JoinColumn(name = "id_invoice", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Company companyId;
+    private InvoicesHeader invoiceId;
     @Column
-    private String description;
+    private String code_product;
     @Column
-    private int code_winerie;
-    @JoinColumn(name = "id_city", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Citys cityId;
+    private String product;
+    @Column
+    private Double quantity;
+    @Column
+    private BigDecimal unit_price;
+    @Column
+    private BigDecimal total;
+    @Column
+    private Double docentry;
     @Column
     private char status;
     @Column
@@ -40,7 +47,7 @@ public class Wineries {
     @Column
     private Date date_update;
 
-    
+
     public int getId() {
         return id;
     }
@@ -49,36 +56,60 @@ public class Wineries {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public InvoicesHeader getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setInvoiceId(InvoicesHeader invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public String getCode_product() {
+        return code_product;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCode_product(String code_product) {
+        this.code_product = code_product;
     }
 
-    public int getCode_winerie() {
-        return code_winerie;
+    public String getProduct() {
+        return product;
     }
 
-    public void setCode_winerie(int code_winerie) {
-        this.code_winerie = code_winerie;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
-    public Citys getCityId() {
-        return cityId;
+    public Double getQuantity() {
+        return quantity;
     }
 
-    public void setCityId(Citys cityId) {
-        this.cityId = cityId;
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getUnit_price() {
+        return unit_price;
+    }
+
+    public void setUnit_price(BigDecimal unit_price) {
+        this.unit_price = unit_price;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Double getDocentry() {
+        return docentry;
+    }
+
+    public void setDocentry(Double docentry) {
+        this.docentry = docentry;
     }
 
     public char getStatus() {
@@ -120,5 +151,4 @@ public class Wineries {
     public void setDate_update(Date date_update) {
         this.date_update = date_update;
     }
-    
 }
