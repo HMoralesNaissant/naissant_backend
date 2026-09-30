@@ -50,7 +50,7 @@ public class DispatchsLabels {
     @Column
     private String observations;
     @Column
-    private Double label;
+    private String label;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
     @Column
@@ -161,11 +161,11 @@ public class DispatchsLabels {
         this.observations = observations;
     }
 
-    public Double getLabel() {
+    public String getLabel() {
         return label;
     }
 
-    public void setLabel(Double label) {
+    public void setLabel(String label) {
         this.label = label;
     }
 

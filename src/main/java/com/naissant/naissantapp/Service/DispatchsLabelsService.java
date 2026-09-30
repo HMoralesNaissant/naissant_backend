@@ -6,6 +6,11 @@
 package com.naissant.naissantapp.Service;
 
 import com.naissant.naissantapp.Entity.DispatchsLabels;
+import com.naissant.naissantapp.message.ProyectsFile;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 public interface DispatchsLabelsService {
@@ -21,4 +26,7 @@ public interface DispatchsLabelsService {
     List<DispatchsLabels>listarByIdConveyorAcc(int id_conveyor_acc);
     List<DispatchsLabels>listarByIdOrigin(int id_origin);
     List<DispatchsLabels>listarByIdDestination(int id_Destination);
+
+    public ProyectsFile savePhotoLabel(Integer labelId, MultipartFile[] files, String description) throws IOException;
+    public Resource downloadLabelPicture(Integer labelId);
 }

@@ -80,4 +80,26 @@ public class InvoicesHeaderController {
                     .body(new ResponseDto("No se pudo completar", false));
         }
     }
+
+    @GetMapping(path = {"/findByInvoice/{invoice}"})
+    public ResponseEntity listarByInvoice(@PathVariable("invoice") Double invoice) {
+        try {
+            return ResponseEntity.ok(new ResponseDto(service.listarByInvoice(invoice), true));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
+
+    @GetMapping(path = {"/findByStatus/{status}"})
+    public ResponseEntity listarByStatus(@PathVariable("status") char status) {
+        try {
+            return ResponseEntity.ok(new ResponseDto(service.listarByStatus(status), true));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
 }

@@ -15,4 +15,5 @@ public interface CustomersRepository extends JpaRepository<Customers, Integer>{
     List<Customers>findByPersonId_Id(int id_person);
     List<Customers>findByZoneId_Id(int id_zone);
     List<Customers>findByAdvisorId_Id(int id_advisor);
+    List<Customers>findByCompanyCode(String company_code);
 }

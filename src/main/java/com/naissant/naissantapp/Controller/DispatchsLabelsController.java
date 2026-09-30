@@ -11,8 +11,12 @@ import com.naissant.naissantapp.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping({"/dispatchsLabels"})
@@ -130,6 +134,34 @@ public class DispatchsLabelsController {
         try {
             return ResponseEntity.ok(new ResponseDto(service.listarByIdDestination(id_destination), true));
         } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
+
+    @PostMapping(path = "/{label_id}/photo/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity uploadFiles(
+            @RequestParam("files") MultipartFile[] files,
+            @PathVariable(name = "label_id") Integer labelId,
+            @RequestParam("description") String description) {
+
+        try {
+            return ResponseEntity.ok().body(service.savePhotoLabel(labelId, files, description));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("Fallo al subir los archivos", false));
+        }
+    }
+
+    @GetMapping("/{label_id}/photo")
+    public ResponseEntity getLabelPicture(@PathVariable(name = "label_id") Integer labelId) {
+        try {
+            Resource file = service.downloadLabelPicture(labelId);
+            return ResponseEntity.status(HttpStatus.OK).body(file);
+        } catch (Exception e) {
+
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
                     .body(new ResponseDto("No se pudo completar", false));

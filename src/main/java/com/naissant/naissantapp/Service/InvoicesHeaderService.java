@@ -17,4 +17,6 @@ public interface InvoicesHeaderService {
     InvoicesHeader delete(int id);
     
     List<InvoicesHeader>listarByIdCompany(int id_company);
+    List<InvoicesHeader>listarByStatus(char status);
+    List<InvoicesHeader>listarByInvoice(Double invoice);
 }

@@ -46,10 +46,6 @@ public class DispatchsControl {
     @Column
     private char status;
     @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
     private String user_update;
     @Column
     private Date date_update;
@@ -157,22 +153,6 @@ public class DispatchsControl {
 
     public void setStatus(char status) {
         this.status = status;
-    }
-
-    public String getUser_create() {
-        return user_create;
-    }
-
-    public void setUser_create(String user_create) {
-        this.user_create = user_create;
-    }
-
-    public Date getDate_create() {
-        return date_create;
-    }
-
-    public void setDate_create(Date date_create) {
-        this.date_create = date_create;
     }
 
     public String getUser_update() {

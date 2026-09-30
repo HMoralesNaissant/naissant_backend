@@ -13,4 +13,6 @@ import java.util.List;
 public interface DispatchsControlRepository extends JpaRepository<DispatchsControl, Integer>{
     
     List<DispatchsControl>findByInvoiceId_Id(int id_invoice);
+    List<DispatchsControl>findByVerified(char verified);
+    List<DispatchsControl>findByDispatched(char dispatched);
 }

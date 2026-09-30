@@ -24,11 +24,15 @@ public class Customers {
     @ManyToOne(fetch = FetchType.EAGER)
     private Persons personId;
     @Column
-    private String company_code;
+    @JoinColumn(name = "company_code")
+    private String companyCode;
     @Column
     private String company_name;
     @Column
     private String branch_address;
+    @JoinColumn(name = "id_city_branch", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Citys cityBranchId;
     @JoinColumn(name = "id_advisor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Advisors advisorId;
@@ -92,12 +96,12 @@ public class Customers {
         this.personId = personId;
     }
 
-    public String getCompany_code() {
-        return company_code;
+    public String getCompanyCode() {
+        return companyCode;
     }
 
-    public void setCompany_code(String company_code) {
-        this.company_code = company_code;
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
     }
 
     public String getCompany_name() {
@@ -115,7 +119,15 @@ public class Customers {
     public void setBranch_address(String branch_address) {
         this.branch_address = branch_address;
     }
-    
+
+    public Citys getCityBranchId() {
+        return cityBranchId;
+    }
+
+    public void setCityBranchId(Citys cityBranchId) {
+        this.cityBranchId = cityBranchId;
+    }
+
     public Advisors getAdvisorId() {
         return advisorId;
     }
@@ -275,5 +287,5 @@ public class Customers {
     public void setDate_update(Date date_update) {
         this.date_update = date_update;
     }
-    
+
 }

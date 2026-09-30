@@ -11,8 +11,12 @@ import com.naissant.naissantapp.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping({"/dispatchsControl"})
@@ -75,6 +79,56 @@ public class DispatchsControlController {
         try {
             return ResponseEntity.ok(new ResponseDto(service.listarByIdInvoice(id_invoice), true));
         } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
+
+    @GetMapping(path = {"/findByVerified/{verified}"})
+    public ResponseEntity listarByVerified(@PathVariable("verified") char verified) {
+        try {
+            return ResponseEntity.ok(new ResponseDto(service.listarByVerified(verified), true));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
+
+    @GetMapping(path = {"/findByDispatched/{dispatched}"})
+    public ResponseEntity listarByDispatched(@PathVariable("dispatched") char dispatched) {
+        try {
+            return ResponseEntity.ok(new ResponseDto(service.listarByDispatched(dispatched), true));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("No se pudo completar", false));
+        }
+    }
+
+    @PostMapping(path = "/{dispatch_id}/photo/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity uploadFiles(
+            @RequestParam("files") MultipartFile[] files,
+            @PathVariable(name = "dispatch_id") Integer dispatchId,
+            @RequestParam("description") String description) {
+
+        try {
+            return ResponseEntity.ok().body(service.savePhotoProfile(dispatchId, files, description));
+        } catch (Exception e) {
+            LOG.error("No se pudo completar ", e);
+            return ResponseEntity.internalServerError()
+                    .body(new ResponseDto("Fallo al subir los archivos", false));
+        }
+    }
+
+    @GetMapping("/{dispatch_id}/photo")
+    public ResponseEntity getProfilePicture(@PathVariable(name = "dispatch_id") Integer dispatchId) {
+        try {
+            Resource file = service.downloadProfilePicture(dispatchId);
+            return ResponseEntity.status(HttpStatus.OK).body(file);
+        } catch (Exception e) {
+
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
                     .body(new ResponseDto("No se pudo completar", false));

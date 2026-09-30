@@ -44,6 +44,16 @@ public class InvoicesHeaderServiceImp implements InvoicesHeaderService{
     }
 
     @Override
+    public List<InvoicesHeader> listarByInvoice(Double invoice) {
+        return repository.findByInvoice(invoice);
+    }
+
+    @Override
+    public List<InvoicesHeader> listarByStatus(char status) {
+        return repository.findByStatus(status);
+    }
+
+    @Override
     public InvoicesHeader delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.

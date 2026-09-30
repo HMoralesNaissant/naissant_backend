@@ -5,18 +5,44 @@
 
 package com.naissant.naissantapp.Service.Imp;
 
+import com.naissant.naissantapp.Constants.GenFilesTypes;
 import com.naissant.naissantapp.Entity.DispatchsLabels;
+import com.naissant.naissantapp.Entity.GenFiles;
 import com.naissant.naissantapp.Repository.DispatchsLabelsRepository;
+import com.naissant.naissantapp.Repository.GenFilesRepository;
 import com.naissant.naissantapp.Service.DispatchsLabelsService;
+import com.naissant.naissantapp.Service.GenFilesService;
+import com.naissant.naissantapp.message.ProyectsFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
-    @Autowired
+
     private DispatchsLabelsRepository repository;
+    private final GenFilesRepository fileRepository;
+    private final GenFilesService filesService;
+    private final String filesPath;
+
+    @Autowired
+    public DispatchsLabelsServiceImp(
+            DispatchsLabelsRepository repository,
+            GenFilesRepository fileRepository,
+            GenFilesService filesService,
+            @Value("${filesdir.label_photos}") String filesPath) {
+        this.repository = repository;
+        this.fileRepository = fileRepository;
+        this.filesService = filesService;
+        this.filesPath = filesPath;
+    }
     
     @Override
     public List<DispatchsLabels> listar() {
@@ -72,5 +98,34 @@ public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
     public DispatchsLabels delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ProyectsFile savePhotoLabel(Integer labelId,MultipartFile[] files, String description) throws IOException {
+
+        DispatchsLabels dispatchsLabels = repository.findById(labelId).get();
+        MultipartFile[] file = files;
+
+        if (file != null) {
+            if (!Objects.isNull(dispatchsLabels.getFileId())) {
+                GenFiles oldPhoto = filesService.listarId(dispatchsLabels.getFileId());
+                filesService.deleteFileById(oldPhoto.getId());
+                dispatchsLabels.setFileId(null);
+            }
+            String finalPath = Paths.get(filesPath, "" + labelId).toString();
+            GenFiles photoProfile = filesService.saveFile(finalPath, file[0], description, GenFilesTypes.IMAGE);
+            dispatchsLabels.setFileId(photoProfile.getId());
+            edit(dispatchsLabels);
+        }
+        return new ProyectsFile("Se subieron los archivos correctamente ");
+    }
+
+    @Override
+    public Resource downloadLabelPicture(Integer labelId) {
+        DispatchsLabels dispatchsLabels = repository.getById(labelId);
+        if (dispatchsLabels != null && dispatchsLabels.getFileId() != null) {
+            return filesService.downloadFile(dispatchsLabels.getFileId().toString());
+        }
+        return null;
     }
 }

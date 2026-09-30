@@ -13,4 +13,6 @@ import java.util.List;
 public interface InvoicesHeaderRepository extends JpaRepository<InvoicesHeader, Integer>{
     
     List<InvoicesHeader>findByCompanyId_Id(int id_company);
+    List<InvoicesHeader>findByStatus(char status);
+    List<InvoicesHeader>findByInvoice(Double invoice);
 }

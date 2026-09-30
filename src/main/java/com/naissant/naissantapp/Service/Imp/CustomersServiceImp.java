@@ -53,6 +53,11 @@ public class CustomersServiceImp implements CustomersService{
     }
 
     @Override
+    public List<Customers> listarByCodeCompany(String company_code) {
+        return repository.findByCompanyCode(company_code);
+    }
+
+    @Override
     public Customers delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.
