@@ -1,7 +1,11 @@
 package com.naissant.naissantapp.domain.carriers;
 
+import lombok.Getter;
+import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+@Getter
+@Setter
 public class EnviaAccountConfiguration {
 
     @JsonAlias("cod_regional_cta")
@@ -9,20 +13,4 @@ public class EnviaAccountConfiguration {
 
     @JsonAlias("cod_oficina_cta")
     private Integer codOficinaCta;
-
-    public Integer getCodRegionalCta() {
-        return codRegionalCta;
-    }
-
-    public void setCodRegionalCta(Integer codRegionalCta) {
-        this.codRegionalCta = codRegionalCta;
-    }
-
-    public Integer getCodOficinaCta() {
-        return codOficinaCta;
-    }
-
-    public void setCodOficinaCta(Integer codOficinaCta) {
-        this.codOficinaCta = codOficinaCta;
-    }
 }

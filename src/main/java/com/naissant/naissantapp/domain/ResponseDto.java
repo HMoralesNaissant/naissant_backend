@@ -5,9 +5,13 @@
 
 package com.naissant.naissantapp.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Getter
+@Setter
 public class ResponseDto{
     
     private String message;
@@ -35,30 +39,6 @@ public class ResponseDto{
 
     public ResponseDto(String message) {
         this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
     }
     
    

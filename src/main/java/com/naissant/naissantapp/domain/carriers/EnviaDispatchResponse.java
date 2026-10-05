@@ -1,11 +1,15 @@
 package com.naissant.naissantapp.domain.carriers;
 
+import lombok.Getter;
+import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Getter
+@Setter
 public class EnviaDispatchResponse implements CarrierOrderResponse {
 
     @JsonProperty("respuesta")
@@ -29,83 +33,11 @@ public class EnviaDispatchResponse implements CarrierOrderResponse {
     @JsonProperty("cod_postaldestino")
     private String codPostalDestino;
 
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
-    }
-
     public BigDecimal getkCobrados() {
         return kCobrados;
     }
 
     public void setkCobrados(BigDecimal kCobrados) {
         this.kCobrados = kCobrados;
-    }
-
-    public BigDecimal getValorFlete() {
-        return valorFlete;
-    }
-
-    public void setValorFlete(BigDecimal valorFlete) {
-        this.valorFlete = valorFlete;
-    }
-
-    public BigDecimal getValorCostoM() {
-        return valorCostoM;
-    }
-
-    public void setValorCostoM(BigDecimal valorCostoM) {
-        this.valorCostoM = valorCostoM;
-    }
-
-    public BigDecimal getValorOtros() {
-        return valorOtros;
-    }
-
-    public void setValorOtros(BigDecimal valorOtros) {
-        this.valorOtros = valorOtros;
-    }
-
-    public Integer getDiasEntrega() {
-        return diasEntrega;
-    }
-
-    public void setDiasEntrega(Integer diasEntrega) {
-        this.diasEntrega = diasEntrega;
-    }
-
-    public String getGuia() {
-        return guia;
-    }
-
-    public void setGuia(String guia) {
-        this.guia = guia;
-    }
-
-    public String getUrlGuia() {
-        return urlGuia;
-    }
-
-    public void setUrlGuia(String urlGuia) {
-        this.urlGuia = urlGuia;
-    }
-
-    public String getNumOrdens() {
-        return numOrdens;
-    }
-
-    public void setNumOrdens(String numOrdens) {
-        this.numOrdens = numOrdens;
-    }
-
-    public String getCodPostalDestino() {
-        return codPostalDestino;
-    }
-
-    public void setCodPostalDestino(String codPostalDestino) {
-        this.codPostalDestino = codPostalDestino;
     }
 }
