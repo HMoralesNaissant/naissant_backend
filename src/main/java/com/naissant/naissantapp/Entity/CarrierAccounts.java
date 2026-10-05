@@ -6,27 +6,31 @@
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "disp_conveyor_accounts")
+@Table(name = "disp_carrier_accounts")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ConveyorAccounts {
+public class CarrierAccounts {
     
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @JoinColumn(name = "id_conveyor", referencedColumnName = "id")
+    @JoinColumn(name = "id_carrier", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Conveyor conveyorId;
+    private Carrier carrierId;
     @Column
     private String description;
     @Column
-    private Double accounts;
+    private Integer accounts;
+    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonBinaryType")
+    @Column(name = "accounts_configuration", columnDefinition = "jsonb")
+    private Object accountsConfiguration;
     @Column
     private char collection;
     @Column
@@ -49,12 +53,12 @@ public class ConveyorAccounts {
         this.id = id;
     }
 
-    public Conveyor getConveyorId() {
-        return conveyorId;
+    public Carrier getCarrierId() {
+        return carrierId;
     }
 
-    public void setConveyorId(Conveyor conveyorId) {
-        this.conveyorId = conveyorId;
+    public void setCarrierId(Carrier carrierId) {
+        this.carrierId = carrierId;
     }
 
     public String getDescription() {
@@ -65,12 +69,20 @@ public class ConveyorAccounts {
         this.description = description;
     }
 
-    public Double getAccounts() {
+    public Integer getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Double accounts) {
+    public void setAccounts(Integer accounts) {
         this.accounts = accounts;
+    }
+
+    public Object getAccountsConfiguration() {
+        return accountsConfiguration;
+    }
+
+    public void setAccountsConfiguration(Object accountsConfiguration) {
+        this.accountsConfiguration = accountsConfiguration;
     }
 
     public char getCollection() {

@@ -5,13 +5,13 @@
 
 package com.naissant.naissantapp.Repository;
 
-import com.naissant.naissantapp.Entity.ConveyorAccounts;
+import com.naissant.naissantapp.Entity.CarrierAccounts;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 @org.springframework.stereotype.Repository
-public interface ConveyorAccountsRepository extends JpaRepository<ConveyorAccounts, Integer>{
+public interface CarrierAccountsRepository extends JpaRepository<CarrierAccounts, Integer>{
     
-    List<ConveyorAccounts>findByConveyorId_Id(int id_conveyor);
+    List<CarrierAccounts>findByCarrierId_Id(int id_carrier);
 }

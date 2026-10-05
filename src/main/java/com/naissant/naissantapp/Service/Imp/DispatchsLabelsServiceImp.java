@@ -10,8 +10,10 @@ import com.naissant.naissantapp.Entity.DispatchsLabels;
 import com.naissant.naissantapp.Entity.GenFiles;
 import com.naissant.naissantapp.Repository.DispatchsLabelsRepository;
 import com.naissant.naissantapp.Repository.GenFilesRepository;
+import com.naissant.naissantapp.Service.Dispatching.CarriersDispatchersHandlerService;
 import com.naissant.naissantapp.Service.DispatchsLabelsService;
 import com.naissant.naissantapp.Service.GenFilesService;
+import com.naissant.naissantapp.domain.DispatchBodyDto;
 import com.naissant.naissantapp.message.ProyectsFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,7 @@ import java.util.Objects;
 @Service
 public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
 
+    private final CarriersDispatchersHandlerService dispatchersHandlerService;
     private DispatchsLabelsRepository repository;
     private final GenFilesRepository fileRepository;
     private final GenFilesService filesService;
@@ -37,11 +40,12 @@ public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
             DispatchsLabelsRepository repository,
             GenFilesRepository fileRepository,
             GenFilesService filesService,
-            @Value("${filesdir.label_photos}") String filesPath) {
+            @Value("${filesdir.label_photos}") String filesPath, CarriersDispatchersHandlerService carriersDispatchersHandlerService) {
         this.repository = repository;
         this.fileRepository = fileRepository;
         this.filesService = filesService;
         this.filesPath = filesPath;
+        this.dispatchersHandlerService = carriersDispatchersHandlerService;
     }
     
     @Override
@@ -56,7 +60,9 @@ public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
 
     @Override
     public DispatchsLabels add(DispatchsLabels d) {
-        return repository.save(d);
+        DispatchsLabels saved =  repository.save(d);
+        dispatchersHandlerService.handleDispatch(new DispatchBodyDto(saved));
+        return saved;
     }
 
     @Override
@@ -75,13 +81,13 @@ public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
     }
 
     @Override
-    public List<DispatchsLabels> listarByIdConveyor(int id_conveyor) {
-        return repository.findByConveyorId_Id(id_conveyor);
+    public List<DispatchsLabels> listarByIdCarrier(int id_carrier) {
+        return repository.findByCarrierId_Id(id_carrier);
     }
 
     @Override
-    public List<DispatchsLabels> listarByIdConveyorAcc(int id_conveyor_acc) {
-        return repository.findByConveyorAccId_Id(id_conveyor_acc);
+    public List<DispatchsLabels> listarByIdCarrierAcc(int id_carrier_acc) {
+        return repository.findByCarrierAccId_Id(id_carrier_acc);
     }
 
     @Override

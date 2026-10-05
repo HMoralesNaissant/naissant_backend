@@ -5,46 +5,46 @@
 
 package com.naissant.naissantapp.Service.Imp;
 
-import com.naissant.naissantapp.Entity.Conveyor;
-import com.naissant.naissantapp.Repository.ConveyorRepository;
-import com.naissant.naissantapp.Service.ConveyorService;
+import com.naissant.naissantapp.Entity.CarrierAccounts;
+import com.naissant.naissantapp.Repository.CarrierAccountsRepository;
+import com.naissant.naissantapp.Service.CarrierAccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ConveyorServiceImp implements ConveyorService{
+public class CarrierAccountsServiceImp implements CarrierAccountsService{
     @Autowired
-    private ConveyorRepository repository;
+    private CarrierAccountsRepository repository;
     
     @Override
-    public List<Conveyor> listar() {
+    public List<CarrierAccounts> listar() {
         return repository.findAll();
     }
 
     @Override
-    public Conveyor listarId(int id) {
+    public CarrierAccounts listarId(int id) {
         return repository.findById(id).get();
     }
 
     @Override
-    public Conveyor add(Conveyor c) {
+    public CarrierAccounts add(CarrierAccounts c) {
         return repository.save(c);
     }
 
     @Override
-    public Conveyor edit(Conveyor c) {
+    public CarrierAccounts edit(CarrierAccounts c) {
         return repository.save(c);
     }
     
     @Override
-    public List<Conveyor> listarByIdCompany(int id_company) {
-        return repository.findByCompanyId_Id(id_company);
+    public List<CarrierAccounts> listarByIdCarrier(int id_carrier) {
+        return repository.findByCarrierId_Id(id_carrier);
     }
 
     @Override
-    public Conveyor delete(int id) {
+    public CarrierAccounts delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.
     }

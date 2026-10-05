@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
+
 @RestController
 @RequestMapping({"/dispatchsLabels"})
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -41,14 +43,9 @@ public class DispatchsLabelsController {
     }
     
     @PostMapping
+    @Transactional
     public ResponseEntity agregar(@RequestBody DispatchsLabels d) {
-        try {
             return ResponseEntity.ok(new ResponseDto(service.add(d), true));
-        } catch (Exception e) {
-            LOG.error("No se pudo completar ", e);
-            return ResponseEntity.internalServerError()
-                    .body(new ResponseDto("No se pudo completar", false));
-        }
     }
     
     @GetMapping(path = {"/{id}"})
@@ -96,10 +93,10 @@ public class DispatchsLabelsController {
         }
     }
 
-    @GetMapping(path = {"/findByConveyor/{id_conveyor}"})
-    public ResponseEntity listarByIdConveyor(@PathVariable("id_conveyor") int id_conveyor) {
+    @GetMapping(path = {"/findByCarrier/{id_carrier}"})
+    public ResponseEntity listarByIdCarrier(@PathVariable("id_carrier") int id_carrier) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdConveyor(id_conveyor), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByIdCarrier(id_carrier), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()
@@ -107,10 +104,10 @@ public class DispatchsLabelsController {
         }
     }
 
-    @GetMapping(path = {"/findByConveyorAcc/{id_conveyor_acc}"})
-    public ResponseEntity listarByIdConveyorAcc(@PathVariable("id_conveyor_acc") int id_conveyor_acc) {
+    @GetMapping(path = {"/findByCarrierAcc/{id_carrier_acc}"})
+    public ResponseEntity listarByIdCarrierAcc(@PathVariable("id_carrier_acc") int id_carrier_acc) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdConveyorAcc(id_conveyor_acc), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByIdCarrierAcc(id_carrier_acc), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()

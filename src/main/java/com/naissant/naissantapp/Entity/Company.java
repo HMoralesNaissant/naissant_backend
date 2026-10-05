@@ -30,9 +30,9 @@ public class Company {
     @Column
     private String city;
     @Column
-    private Double phone;
+    private String phone;
     @Column
-    private Double cellular;
+    private String cellular;
     @Column
     private String website;
     @Column
@@ -99,19 +99,19 @@ public class Company {
         this.city = city;
     }
 
-    public Double getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Double phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Double getCellular() {
+    public String getCellular() {
         return cellular;
     }
 
-    public void setCellular(Double cellular) {
+    public void setCellular(String cellular) {
         this.cellular = cellular;
     }
 

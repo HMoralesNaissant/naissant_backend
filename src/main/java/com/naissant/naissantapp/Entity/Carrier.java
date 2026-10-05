@@ -6,14 +6,15 @@
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "disp_conveyor")
+@Table(name = "disp_carrier")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Conveyor {
+public class Carrier {
     
     
     @Id
@@ -35,6 +36,11 @@ public class Conveyor {
     private Double cellular;
     @Column
     private String email;
+    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonBinaryType")
+    @Column(name = "carrier_configuration", columnDefinition = "jsonb")
+    private Object carrierConfiguration;
+    @Column(name = "id_photo_file", nullable = true)
+    private Integer photoFileId;
     @Column
     private char status;
     @Column
@@ -109,6 +115,22 @@ public class Conveyor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Object getCarrierConfiguration() {
+        return carrierConfiguration;
+    }
+
+    public void setCarrierConfiguration(Object carrierConfiguration) {
+        this.carrierConfiguration = carrierConfiguration;
+    }
+
+    public Integer getPhotoFileId() {
+        return photoFileId;
+    }
+
+    public void setPhotoFileId(Integer photoFileId) {
+        this.photoFileId = photoFileId;
     }
 
     public char getStatus() {

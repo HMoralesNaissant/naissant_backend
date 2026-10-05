@@ -5,8 +5,8 @@
 
 package com.naissant.naissantapp.Controller;
 
-import com.naissant.naissantapp.Entity.Conveyor;
-import com.naissant.naissantapp.Service.ConveyorService;
+import com.naissant.naissantapp.Entity.CarrierAccounts;
+import com.naissant.naissantapp.Service.CarrierAccountsService;
 import com.naissant.naissantapp.domain.ResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +15,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping({"/conveyor"})
+@RequestMapping({"/carrierAccounts"})
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 
-public class ConveyorController {
+public class CarrierAccountsController {
 
     @Autowired
-    ConveyorService service;
+    CarrierAccountsService service;
 
-    private final Logger LOG = LoggerFactory.getLogger(ConveyorController.class);
+    private final Logger LOG = LoggerFactory.getLogger(CarrierAccountsController.class);
 
     @GetMapping
     public ResponseEntity listar() {
@@ -37,7 +37,7 @@ public class ConveyorController {
     }
     
     @PostMapping
-    public ResponseEntity agregar(@RequestBody Conveyor c) {
+    public ResponseEntity agregar(@RequestBody CarrierAccounts c) {
         try {
             return ResponseEntity.ok(new ResponseDto(service.add(c), true));
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class ConveyorController {
     }
         
     @PutMapping(path = {"/{id}"})
-    public ResponseEntity editar(@RequestBody Conveyor c, @PathVariable("id") int id) {
+    public ResponseEntity editar(@RequestBody CarrierAccounts c, @PathVariable("id") int id) {
         try {
             c.setId(id);
             return ResponseEntity.ok(new ResponseDto(service.edit(c), true));
@@ -70,10 +70,10 @@ public class ConveyorController {
         }
     }
     
-    @GetMapping(path = {"/findByCompany/{id_company}"})
-    public ResponseEntity listarByIdCompany(@PathVariable("id_company") int id_company) {
+    @GetMapping(path = {"/findByCarrier/{id_carrier}"})
+    public ResponseEntity listarByIdCarrier(@PathVariable("id_carrier") int id_carrier) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByIdCompany(id_company), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByIdCarrier(id_carrier), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()

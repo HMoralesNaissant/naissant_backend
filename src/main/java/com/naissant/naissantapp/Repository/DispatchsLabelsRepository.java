@@ -14,8 +14,8 @@ public interface DispatchsLabelsRepository extends JpaRepository<DispatchsLabels
     
     List<DispatchsLabels>findByDispatchId_Id(int id_dispatch);
     List<DispatchsLabels>findByInvoiceId_Id(int id_invoice);
-    List<DispatchsLabels>findByConveyorId_Id(int id_conveyor);
-    List<DispatchsLabels>findByConveyorAccId_Id(int id_conveyor_acc);
+    List<DispatchsLabels>findByCarrierId_Id(int id_carrier);
+    List<DispatchsLabels>findByCarrierAccId_Id(int id_carrier_acc);
     List<DispatchsLabels>findByOriginId_Id(int id_origin);
     List<DispatchsLabels>findByDestinationId_Id(int id_destination);
 }

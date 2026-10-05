@@ -6,6 +6,7 @@
 package com.naissant.naissantapp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,14 +28,14 @@ public class DispatchsLabels {
     @JoinColumn(name = "id_invoice", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private InvoicesHeader invoiceId;
-    @JoinColumn(name = "id_conveyor", referencedColumnName = "id")
+    @JoinColumn(name = "id_carrier", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Conveyor conveyorId;
-    @JoinColumn(name = "id_conveyor_acc", referencedColumnName = "id")
+    private Carrier carrierId;
+    @JoinColumn(name = "id_carrier_acc", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private ConveyorAccounts conveyorAccId;
+    private CarrierAccounts carrierAccId;
     @Column
-    private Double boxes;
+    private Integer boxes;
     @Column
     private BigDecimal weight_kg;
     @Column
@@ -53,6 +54,9 @@ public class DispatchsLabels {
     private String label;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
+    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonBinaryType")
+    @Column(name = "additional_info", columnDefinition = "jsonb")
+    private Object additionalInfo;
     @Column
     private char status;
     @Column
@@ -89,27 +93,27 @@ public class DispatchsLabels {
         this.invoiceId = invoiceId;
     }
 
-    public Conveyor getConveyorId() {
-        return conveyorId;
+    public Carrier getCarrierId() {
+        return carrierId;
     }
 
-    public void setConveyorId(Conveyor conveyorId) {
-        this.conveyorId = conveyorId;
+    public void setCarrierId(Carrier carrierId) {
+        this.carrierId = carrierId;
     }
 
-    public ConveyorAccounts getConveyorAccId() {
-        return conveyorAccId;
+    public CarrierAccounts getCarrierAccId() {
+        return carrierAccId;
     }
 
-    public void setConveyorAccId(ConveyorAccounts conveyorAccId) {
-        this.conveyorAccId = conveyorAccId;
+    public void setCarrierAccId(CarrierAccounts carrierAccId) {
+        this.carrierAccId = carrierAccId;
     }
 
-    public Double getBoxes() {
+    public Integer getBoxes() {
         return boxes;
     }
 
-    public void setBoxes(Double boxes) {
+    public void setBoxes(Integer boxes) {
         this.boxes = boxes;
     }
 
@@ -215,5 +219,13 @@ public class DispatchsLabels {
 
     public void setDate_update(Date date_update) {
         this.date_update = date_update;
+    }
+
+    public Object getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(Object additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 }

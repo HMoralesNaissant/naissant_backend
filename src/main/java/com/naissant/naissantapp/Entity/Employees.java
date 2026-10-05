@@ -28,11 +28,11 @@ public class Employees {
     @Column
     private String emergency_contact;
     @Column
-    private Double contact_phone;
+    private String contact_phone;
     @Column
     private String schooling;
     @Column
-    private Double contract;
+    private String contract;
     @Column
     private String profession;
     @JoinColumn(name = "id_temporary", referencedColumnName = "id")
@@ -141,11 +141,11 @@ public class Employees {
         this.schooling = schooling;
     }
 
-    public Double getContract() {
+    public String getContract() {
         return contract;
     }
 
-    public void setContract(Double contract) {
+    public void setContract(String contract) {
         this.contract = contract;
     }
 
@@ -293,11 +293,11 @@ public class Employees {
         this.types_bonus = types_bonus;
     }
 
-    public Double getContact_phone() {
+    public String getContact_phone() {
         return contact_phone;
     }
 
-    public void setContact_phone(Double contact_phone) {
+    public void setContact_phone(String contact_phone) {
         this.contact_phone = contact_phone;
     }
 

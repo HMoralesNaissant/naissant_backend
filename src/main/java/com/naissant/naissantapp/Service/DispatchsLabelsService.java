@@ -22,8 +22,8 @@ public interface DispatchsLabelsService {
     
     List<DispatchsLabels>listarByIdDispatch(int id_dispatch);
     List<DispatchsLabels>listarByIdInvoice(int id_invoice);
-    List<DispatchsLabels>listarByIdConveyor(int id_conveyor);
-    List<DispatchsLabels>listarByIdConveyorAcc(int id_conveyor_acc);
+    List<DispatchsLabels>listarByIdCarrier(int id_carrier);
+    List<DispatchsLabels>listarByIdCarrierAcc(int id_carrier_acc);
     List<DispatchsLabels>listarByIdOrigin(int id_origin);
     List<DispatchsLabels>listarByIdDestination(int id_Destination);
 

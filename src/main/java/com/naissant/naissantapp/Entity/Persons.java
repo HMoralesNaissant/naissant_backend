@@ -36,9 +36,9 @@ public class Persons {
     @Column
     private Date date_birth;
     @Column
-    private Double phone;
+    private String phone;
     @Column
-    private Double cellular;
+    private String cellular;
     @Column
     private String address;
     @JoinColumn(name = "id_departments", referencedColumnName = "id")
@@ -126,19 +126,19 @@ public class Persons {
         this.date_birth = date_birth;
     }
 
-    public Double getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Double phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Double getCellular() {
+    public String getCellular() {
         return cellular;
     }
 
-    public void setCellular(Double cellular) {
+    public void setCellular(String cellular) {
         this.cellular = cellular;
     }
 
