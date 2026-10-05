@@ -1,0 +1,14 @@
+com\naissant\naissantapp\Repository\CarrierRepository.class
+com\naissant\naissantapp\Controller\CarrierController.class
+com\naissant\naissantapp\Controller\CarrierAccountsController.class
+com\naissant\naissantapp\Service\Imp\CarrierServiceImp.class
+com\naissant\naissantapp\Entity\DispatchLabelsResponse.class
+com\naissant\naissantapp\Repository\CarrierAccountsRepository.class
+com\naissant\naissantapp\Entity\CarrierAccounts.class
+com\naissant\naissantapp\Service\Imp\CarrierAccountsServiceImp.class
+com\naissant\naissantapp\Repository\DispatchLabelsResponseRepository.class
+com\naissant\naissantapp\Service\CarrierAccountsService.class
+com\naissant\naissantapp\domain\carriers\EnviaServiceConfiguration.class
+com\naissant\naissantapp\Entity\Carrier.class
+com\naissant\naissantapp\Service\CarrierService.class
+com\naissant\naissantapp\domain\carriers\EnviaAccountConfiguration.class
