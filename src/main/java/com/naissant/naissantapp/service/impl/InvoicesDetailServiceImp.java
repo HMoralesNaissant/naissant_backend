@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.InvoicesDetail;
 import com.naissant.naissantapp.repository.InvoicesDetailRepository;
 import com.naissant.naissantapp.service.InvoicesDetailService;
@@ -30,12 +31,12 @@ public class InvoicesDetailServiceImp implements InvoicesDetailService{
 
     @Override
     public InvoicesDetail add(InvoicesDetail i) {
-        return repository.save(i);
+        return repository.save(Audit.created(i));
     }
 
     @Override
     public InvoicesDetail edit(InvoicesDetail i) {
-        return repository.save(i);
+        return repository.save(Audit.updated(i));
     }
     
     @Override

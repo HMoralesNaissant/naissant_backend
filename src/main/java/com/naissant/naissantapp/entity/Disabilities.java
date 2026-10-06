@@ -16,7 +16,7 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class Disabilities {
+public class Disabilities implements Auditable {
     
     
     @Id

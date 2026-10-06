@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.VouchersType;
 import com.naissant.naissantapp.service.VouchersTypeService;
 import com.naissant.naissantapp.repository.VouchersTypeRepository;
@@ -29,12 +30,12 @@ public class VouchersTypeServiceImp implements VouchersTypeService{
 
     @Override
     public VouchersType add(VouchersType v) {
-        return repository.save(v);
+        return repository.save(Audit.created(v));
     }
 
     @Override
     public VouchersType edit(VouchersType v) {
-        return repository.save(v);
+        return repository.save(Audit.updated(v));
     }
     
     @Override

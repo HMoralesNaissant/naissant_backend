@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PriceList;
 import com.naissant.naissantapp.service.PriceListService;
 import com.naissant.naissantapp.repository.PriceListRepository;
@@ -29,12 +30,12 @@ public class PriceListServiceImp implements PriceListService{
 
     @Override
     public PriceList add(PriceList p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public PriceList edit(PriceList p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

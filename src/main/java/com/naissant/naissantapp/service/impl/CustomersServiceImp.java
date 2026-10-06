@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Customers;
 import com.naissant.naissantapp.service.CustomersService;
 import com.naissant.naissantapp.repository.CustomersRepository;
@@ -29,12 +30,12 @@ public class CustomersServiceImp implements CustomersService{
 
     @Override
     public Customers add(Customers c) {
-        return repository.save(c);
+        return repository.save(Audit.created(c));
     }
 
     @Override
     public Customers edit(Customers c) {
-        return repository.save(c);
+        return repository.save(Audit.updated(c));
     }
     
     @Override

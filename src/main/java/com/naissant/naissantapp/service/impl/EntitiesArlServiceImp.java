@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EntitiesArl;
 import com.naissant.naissantapp.service.EntitiesArlService;
 import com.naissant.naissantapp.repository.EntitiesArlRepository;
@@ -29,12 +30,12 @@ public class EntitiesArlServiceImp implements EntitiesArlService{
 
     @Override
     public EntitiesArl add(EntitiesArl a) {
-        return repository.save(a);
+        return repository.save(Audit.created(a));
     }
 
     @Override
     public EntitiesArl edit(EntitiesArl a) {
-        return repository.save(a);
+        return repository.save(Audit.updated(a));
     }
     
     @Override

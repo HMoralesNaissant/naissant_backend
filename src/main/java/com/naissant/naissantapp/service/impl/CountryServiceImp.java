@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Country;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class CountryServiceImp implements CountryService{
 
     @Override
     public Country add(Country c) {
-        return repositorio.save(c);
+        return repositorio.save(Audit.created(c));
     }
 
     @Override
     public Country edit(Country a) {
-        return repositorio.save(a);
+        return repositorio.save(Audit.updated(a));
     }
     
     @Override

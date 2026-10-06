@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.InvoicesHeader;
 import com.naissant.naissantapp.repository.InvoicesHeaderRepository;
 import com.naissant.naissantapp.service.InvoicesHeaderService;
@@ -30,12 +31,12 @@ public class InvoicesHeaderServiceImp implements InvoicesHeaderService{
 
     @Override
     public InvoicesHeader add(InvoicesHeader i) {
-        return repository.save(i);
+        return repository.save(Audit.created(i));
     }
 
     @Override
     public InvoicesHeader edit(InvoicesHeader i) {
-        return repository.save(i);
+        return repository.save(Audit.updated(i));
     }
     
     @Override

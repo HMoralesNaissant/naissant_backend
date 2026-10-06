@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.DispatchsLabels;
 import com.naissant.naissantapp.entity.GenFiles;
@@ -60,14 +61,14 @@ public class DispatchsLabelsServiceImp implements DispatchsLabelsService{
 
     @Override
     public DispatchsLabels add(DispatchsLabels d) {
-        DispatchsLabels saved =  repository.save(d);
+        DispatchsLabels saved =  repository.save(Audit.created(d));
         dispatchersHandlerService.handleDispatch(new DispatchBodyDto(saved));
         return saved;
     }
 
     @Override
     public DispatchsLabels edit(DispatchsLabels d) {
-        return repository.save(d);
+        return repository.save(Audit.updated(d));
     }
     
     @Override

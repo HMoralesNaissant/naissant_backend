@@ -17,7 +17,7 @@ import jakarta.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class UndMeasures {
+public class UndMeasures implements Auditable {
     
     
     @Id

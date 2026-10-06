@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.SalesHours;
 import com.naissant.naissantapp.service.SalesHoursService;
 import com.naissant.naissantapp.repository.SalesHoursRepository;
@@ -29,12 +30,12 @@ public class SalesHoursServiceImp implements SalesHoursService{
 
     @Override
     public SalesHours add(SalesHours s) {
-        return repository.save(s);
+        return repository.save(Audit.created(s));
     }
 
     @Override
     public SalesHours edit(SalesHours s) {
-        return repository.save(s);
+        return repository.save(Audit.updated(s));
     }
     
     @Override

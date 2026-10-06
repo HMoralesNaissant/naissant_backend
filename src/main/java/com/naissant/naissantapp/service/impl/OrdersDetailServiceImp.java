@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.OrdersDetail;
 import com.naissant.naissantapp.service.OrdersDetailService;
 import com.naissant.naissantapp.repository.OrdersDetailRepository;
@@ -29,12 +30,12 @@ public class OrdersDetailServiceImp implements OrdersDetailService{
 
     @Override
     public OrdersDetail add(OrdersDetail o) {
-        return repository.save(o);
+        return repository.save(Audit.created(o));
     }
 
     @Override
     public OrdersDetail edit(OrdersDetail o) {
-        return repository.save(o);
+        return repository.save(Audit.updated(o));
     }
     
     @Override

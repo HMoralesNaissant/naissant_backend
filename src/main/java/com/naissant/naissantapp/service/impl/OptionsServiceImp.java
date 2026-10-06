@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Options;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class OptionsServiceImp implements OptionsService{
 
     @Override
     public Options add(Options o) {
-        return repository.save(o);
+        return repository.save(Audit.created(o));
     }
 
     @Override
     public Options edit(Options o) {
-        return repository.save(o);
+        return repository.save(Audit.updated(o));
     }
     
     @Override

@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PaymentForms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,12 +30,12 @@ public class PaymentFormsServiceImp implements PaymentFormsService {
 
     @Override
     public PaymentForms add(PaymentForms f) {
-        return repository.save(f);
+        return repository.save(Audit.created(f));
     }
 
     @Override
     public PaymentForms edit(PaymentForms f) {
-        return repository.save(f);
+        return repository.save(Audit.updated(f));
     }
     
     @Override

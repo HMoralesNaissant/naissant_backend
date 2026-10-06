@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Wineries;
 import com.naissant.naissantapp.service.WineriesService;
 import com.naissant.naissantapp.repository.WineriesRepository;
@@ -29,12 +30,12 @@ public class WineriesServiceImp implements WineriesService{
 
     @Override
     public Wineries add(Wineries w) {
-        return repository.save(w);
+        return repository.save(Audit.created(w));
     }
 
     @Override
     public Wineries edit(Wineries w) {
-        return repository.save(w);
+        return repository.save(Audit.updated(w));
     }
     
     @Override

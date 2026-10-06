@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Modules;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class ModulesServiceImp implements ModulesService{
 
     @Override
     public Modules add(Modules m) {
-        return repository.save(m);
+        return repository.save(Audit.created(m));
     }
 
     @Override
     public Modules edit(Modules m) {
-        return repository.save(m);
+        return repository.save(Audit.updated(m));
     }
     
     @Override

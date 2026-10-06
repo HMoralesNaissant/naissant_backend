@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.CatProducts;
 import com.naissant.naissantapp.service.CatProductsService;
 import com.naissant.naissantapp.repository.CatProductsRepository;
@@ -29,12 +30,12 @@ public class CatProductsServiceImp implements CatProductsService{
 
     @Override
     public CatProducts add(CatProducts p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public CatProducts edit(CatProducts p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

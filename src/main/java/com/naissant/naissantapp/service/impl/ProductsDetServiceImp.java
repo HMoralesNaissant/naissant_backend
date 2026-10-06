@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.ProductsDet;
 import com.naissant.naissantapp.service.ProductsDetService;
 import com.naissant.naissantapp.repository.ProductsDetRepository;
@@ -29,12 +30,12 @@ public class ProductsDetServiceImp implements ProductsDetService{
 
     @Override
     public ProductsDet add(ProductsDet p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public ProductsDet edit(ProductsDet p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

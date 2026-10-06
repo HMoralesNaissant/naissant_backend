@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Taxes;
 import com.naissant.naissantapp.service.TaxesService;
 import com.naissant.naissantapp.repository.TaxesRepository;
@@ -29,12 +30,12 @@ public class TaxesServiceImp implements TaxesService{
 
     @Override
     public Taxes add(Taxes t) {
-        return repository.save(t);
+        return repository.save(Audit.created(t));
     }
 
     @Override
     public Taxes edit(Taxes t) {
-        return repository.save(t);
+        return repository.save(Audit.updated(t));
     }
     
     @Override

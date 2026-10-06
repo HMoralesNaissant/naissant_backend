@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.GenFiles;
 import com.naissant.naissantapp.entity.Disabilities;
@@ -56,12 +57,12 @@ public class DisabilitiesServiceImp implements DisabilitiesService{
 
     @Override
     public Disabilities add(Disabilities d) {
-        return repository.save(d);
+        return repository.save(Audit.created(d));
     }
 
     @Override
     public Disabilities edit(Disabilities d) {
-        return repository.save(d);
+        return repository.save(Audit.updated(d));
     }
     
     @Override

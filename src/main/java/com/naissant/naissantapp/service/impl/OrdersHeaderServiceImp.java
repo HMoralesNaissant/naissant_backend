@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.OrdersHeader;
 import com.naissant.naissantapp.service.OrdersHeaderService;
 import com.naissant.naissantapp.repository.OrdersHeaderRepository;
@@ -29,12 +30,12 @@ public class OrdersHeaderServiceImp implements OrdersHeaderService{
 
     @Override
     public OrdersHeader add(OrdersHeader o) {
-        return repository.save(o);
+        return repository.save(Audit.created(o));
     }
 
     @Override
     public OrdersHeader edit(OrdersHeader o) {
-        return repository.save(o);
+        return repository.save(Audit.updated(o));
     }
     
     @Override

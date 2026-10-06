@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PqrsStatus;
 import com.naissant.naissantapp.service.PqrsStatusService;
 import com.naissant.naissantapp.repository.PqrsStatusRepository;
@@ -29,12 +30,12 @@ public class PqrsStatusServiceImp implements PqrsStatusService{
 
     @Override
     public PqrsStatus add(PqrsStatus p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public PqrsStatus edit(PqrsStatus p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

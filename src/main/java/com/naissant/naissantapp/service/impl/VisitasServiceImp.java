@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Visitas;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class VisitasServiceImp implements VisitasService{
 
     @Override
     public Visitas add(Visitas v) {
-        return repositorio.save(v);
+        return repositorio.save(Audit.created(v));
     }
 
     @Override
     public Visitas edit(Visitas v) {
-        return repositorio.save(v);
+        return repositorio.save(Audit.updated(v));
     }
     
     @Override

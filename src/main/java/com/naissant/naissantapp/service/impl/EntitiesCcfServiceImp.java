@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EntitiesCcf;
 import com.naissant.naissantapp.service.EntitiesCcfService;
 import com.naissant.naissantapp.repository.EntitiesCcfRepository;
@@ -29,12 +30,12 @@ public class EntitiesCcfServiceImp implements EntitiesCcfService{
 
     @Override
     public EntitiesCcf add(EntitiesCcf c) {
-        return repository.save(c);
+        return repository.save(Audit.created(c));
     }
 
     @Override
     public EntitiesCcf edit(EntitiesCcf c) {
-        return repository.save(c);
+        return repository.save(Audit.updated(c));
     }
     
     @Override

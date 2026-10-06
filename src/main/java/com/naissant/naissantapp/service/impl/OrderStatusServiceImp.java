@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.OrderStatus;
 import com.naissant.naissantapp.service.OrderStatusService;
 import com.naissant.naissantapp.repository.OrderStatusRepository;
@@ -29,12 +30,12 @@ public class OrderStatusServiceImp implements OrderStatusService{
 
     @Override
     public OrderStatus add(OrderStatus o) {
-        return repository.save(o);
+        return repository.save(Audit.created(o));
     }
 
     @Override
     public OrderStatus edit(OrderStatus o) {
-        return repository.save(o);
+        return repository.save(Audit.updated(o));
     }
     
     @Override
