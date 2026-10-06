@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Charges;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class ChargesServiceImp implements ChargesService{
 
     @Override
     public Charges add(Charges c) {
-        return repository.save(c);
+        return repository.save(Audit.created(c));
     }
 
     @Override
     public Charges edit(Charges c) {
-        return repository.save(c);
+        return repository.save(Audit.updated(c));
     }
     
     @Override

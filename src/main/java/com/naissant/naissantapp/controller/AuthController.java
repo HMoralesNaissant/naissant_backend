@@ -1,5 +1,6 @@
 package com.naissant.naissantapp.controller;
 
+import com.naissant.naissantapp.config.CurrentUser;
 import com.naissant.naissantapp.entity.Persons;
 import com.naissant.naissantapp.entity.Users;
 import com.naissant.naissantapp.service.AuthService;
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,13 +51,9 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> me(@RequestHeader(value = "Authorization", required = false) String header) {
-        Claims claims = header != null && header.startsWith("Bearer ")
-                ? jwt.parse(header.substring(7), JwtService.ACCESS) : null;
-        if (claims == null) {
-            return unauthorized("Sesión inválida");
-        }
-        return auth.findActive(Integer.parseInt(claims.getSubject()))
+    public ResponseEntity<?> me() {
+        return CurrentUser.get()
+                .flatMap(cu -> auth.findActive(cu.id()))
                 .<ResponseEntity<?>>map(u -> {
                     Persons p = u.getPersonId();
                     Map<String, Object> body = new LinkedHashMap<>();
@@ -65,6 +61,13 @@ public class AuthController {
                     body.put("username", u.getUserName());
                     body.put("name", p == null ? u.getUserName() : p.getName() + " " + p.getSurnames());
                     body.put("email", p == null ? null : p.getEmail());
+                    body.put("photoFileId", u.getPhotoFileId());
+                    body.put("profileId", u.getProfileId() == null ? null : Map.of("id", u.getProfileId().getId()));
+                    if (p != null) {
+                        body.put("personId", Map.of("id", p.getId()));
+                        body.put("companyId", p.getCompanyId());
+                        body.put("departmentsId", p.getDepartmentsId() == null ? null : Map.of("id", p.getDepartmentsId().getId()));
+                    }
                     return ResponseEntity.ok(body);
                 })
                 .orElseGet(() -> unauthorized("Sesión inválida"));

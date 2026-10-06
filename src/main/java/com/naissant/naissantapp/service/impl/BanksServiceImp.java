@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Banks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,12 +30,12 @@ public class BanksServiceImp implements BanksService {
 
     @Override
     public Banks add(Banks b) {
-        return repository.save(b);
+        return repository.save(Audit.created(b));
     }
 
     @Override
     public Banks edit(Banks b) {
-        return repository.save(b);
+        return repository.save(Audit.updated(b));
     }
     
     @Override

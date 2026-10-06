@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.SeveranceFund;
 import com.naissant.naissantapp.service.SeveranceFundService;
 import com.naissant.naissantapp.repository.SeveranceFundRepository;
@@ -29,12 +30,12 @@ public class SeveranceFundServiceImp implements SeveranceFundService{
 
     @Override
     public SeveranceFund add(SeveranceFund s) {
-        return repository.save(s);
+        return repository.save(Audit.created(s));
     }
 
     @Override
     public SeveranceFund edit(SeveranceFund s) {
-        return repository.save(s);
+        return repository.save(Audit.updated(s));
     }
     
     @Override

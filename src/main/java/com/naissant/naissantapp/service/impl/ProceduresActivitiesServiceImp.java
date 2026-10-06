@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.ProceduresActivities;
 import com.naissant.naissantapp.service.ProceduresActivitiesService;
 import com.naissant.naissantapp.repository.ProceduresActivitiesRepository;
@@ -29,12 +30,12 @@ public class ProceduresActivitiesServiceImp implements ProceduresActivitiesServi
 
     @Override
     public ProceduresActivities add(ProceduresActivities p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public ProceduresActivities edit(ProceduresActivities p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

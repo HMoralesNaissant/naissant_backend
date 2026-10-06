@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.GenFiles;
 import com.naissant.naissantapp.entity.Permits;
@@ -56,12 +57,12 @@ public class PermitsServiceImp implements PermitsService{
 
     @Override
     public Permits add(Permits p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public Permits edit(Permits p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

@@ -27,10 +27,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
-import java.util.concurrent.TimeoutException;
 
 @Service
 public class EnviaDispatchService implements CarrierDispatchService {
@@ -173,28 +173,34 @@ public class EnviaDispatchService implements CarrierDispatchService {
                 .bodyValue(request)
                 .exchangeToMono(this::readResponse)
                 .timeout(Duration.ofSeconds(30))
-                .doOnError(error -> LOG.error("Envia generation request failed", error))
-                .onErrorResume(TimeoutException.class, error -> Mono.empty())
-                .onErrorResume(
-                        org.springframework.web.reactive.function.client.WebClientRequestException.class,
-                        error -> Mono.empty())
+                .doOnError(this::logGenerationError)
                 .block();
+    }
+
+    private void logGenerationError(Throwable error) {
+        if (error instanceof WebClientResponseException apiError) {
+            LOG.error("Envia generation request failed: status={}, body={}",
+                    apiError.getStatusCode().value(), apiError.getResponseBodyAsString(), apiError);
+        } else {
+            LOG.error("Envia generation request failed", error);
+        }
     }
 
     private Mono<EnviaDispatchResponse> readResponse(ClientResponse response) {
         HttpStatusCode status = response.statusCode();
+        if (!status.is2xxSuccessful()) {
+            // Rethrows the API error as a WebClientResponseException (status, headers and body included)
+            return response.createException().flatMap(Mono::error);
+        }
         return response.bodyToMono(String.class)
                 .defaultIfEmpty("")
                 .flatMap(body -> {
                     LOG.info("Envia generation response: status={}, body={}", status.value(), body);
-                    if (!status.is2xxSuccessful() || !StringUtils.hasText(body)) {
-                        return Mono.empty();
-                    }
                     try {
                         return Mono.just(objectMapper.readValue(body, EnviaDispatchResponse.class));
                     } catch (JacksonException error) {
                         LOG.error("Failed to parse Envia generation response: {}", body, error);
-                        return Mono.empty();
+                        return Mono.error(error);
                     }
                 });
     }

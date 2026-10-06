@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PortfolioAge;
 import com.naissant.naissantapp.service.PortfolioAgeService;
 import com.naissant.naissantapp.repository.PortfolioAgeRepository;
@@ -29,12 +30,12 @@ public class PortfolioAgeServiceImp implements PortfolioAgeService{
 
     @Override
     public PortfolioAge add(PortfolioAge p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public PortfolioAge edit(PortfolioAge p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

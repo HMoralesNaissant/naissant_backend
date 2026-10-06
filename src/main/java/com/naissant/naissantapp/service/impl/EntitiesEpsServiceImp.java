@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EntitiesEps;
 import com.naissant.naissantapp.service.EntitiesEpsService;
 import com.naissant.naissantapp.repository.EntitiesEpsRepository;
@@ -29,12 +30,12 @@ public class EntitiesEpsServiceImp implements EntitiesEpsService{
 
     @Override
     public EntitiesEps add(EntitiesEps p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public EntitiesEps edit(EntitiesEps p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

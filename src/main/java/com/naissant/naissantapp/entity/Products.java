@@ -17,7 +17,7 @@ import jakarta.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class Products {
+public class Products implements Auditable {
     
     
     @Id
@@ -33,7 +33,7 @@ public class Products {
     private String code;
     @Column
     private String bar_code;
-    @Column
+    @Column(columnDefinition = "text")
     private String content;
     @Column
     private String benefits;

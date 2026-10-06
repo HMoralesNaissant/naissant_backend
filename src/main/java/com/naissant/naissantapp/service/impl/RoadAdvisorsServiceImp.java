@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.RoadAdvisors;
 import com.naissant.naissantapp.service.RoadAdvisorsService;
 import com.naissant.naissantapp.repository.RoadAdvisorsRepository;
@@ -30,12 +31,12 @@ public class RoadAdvisorsServiceImp implements RoadAdvisorsService{
 
     @Override
     public RoadAdvisors add(RoadAdvisors r) {
-        return repository.save(r);
+        return repository.save(Audit.created(r));
     }
 
     @Override
     public RoadAdvisors edit(RoadAdvisors r) {
-        return repository.save(r);
+        return repository.save(Audit.updated(r));
     }
     
     @Override

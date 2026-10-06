@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.repository.DepartmentsRepository;
 import com.naissant.naissantapp.entity.Departments;
 import com.naissant.naissantapp.service.DepartmentsService;
@@ -29,12 +30,12 @@ public class DepartmentsServiceImp implements DepartmentsService{
 
     @Override
     public Departments add(Departments d) {
-        return repositorio.save(d);
+        return repositorio.save(Audit.created(d));
     }
 
     @Override
     public Departments edit(Departments d) {
-        return repositorio.save(d);
+        return repositorio.save(Audit.updated(d));
     }
     
     @Override

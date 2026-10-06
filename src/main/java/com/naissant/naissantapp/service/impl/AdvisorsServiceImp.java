@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Advisors;
 import com.naissant.naissantapp.service.AdvisorsService;
 import com.naissant.naissantapp.repository.AdvisorsRepository;
@@ -29,12 +30,12 @@ public class AdvisorsServiceImp implements AdvisorsService{
 
     @Override
     public Advisors add(Advisors a) {
-        return repository.save(a);
+        return repository.save(Audit.created(a));
     }
 
     @Override
     public Advisors edit(Advisors a) {
-        return repository.save(a);
+        return repository.save(Audit.updated(a));
     }
     
     @Override

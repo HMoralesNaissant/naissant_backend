@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Areas;
 import com.naissant.naissantapp.service.AreasService;
 import com.naissant.naissantapp.repository.AreasRepository;
@@ -29,12 +30,12 @@ public class AreasServiceImp implements AreasService{
 
     @Override
     public Areas add(Areas a) {
-        return repository.save(a);
+        return repository.save(Audit.created(a));
     }
 
     @Override
     public Areas edit(Areas a) {
-        return repository.save(a);
+        return repository.save(Audit.updated(a));
     }
     
     @Override

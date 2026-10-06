@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.UndMeasures;
 import com.naissant.naissantapp.service.UndMeasuresService;
 import com.naissant.naissantapp.repository.UndMeasuresRepository;
@@ -29,12 +30,12 @@ public class UndMeasuresServiceImp implements UndMeasuresService{
 
     @Override
     public UndMeasures add(UndMeasures u) {
-        return repository.save(u);
+        return repository.save(Audit.created(u));
     }
 
     @Override
     public UndMeasures edit(UndMeasures u) {
-        return repository.save(u);
+        return repository.save(Audit.updated(u));
     }
     
     @Override

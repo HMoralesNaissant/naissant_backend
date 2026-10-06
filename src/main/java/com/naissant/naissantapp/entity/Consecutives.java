@@ -16,7 +16,7 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class Consecutives {
+public class Consecutives implements Auditable {
     
     
     @Id

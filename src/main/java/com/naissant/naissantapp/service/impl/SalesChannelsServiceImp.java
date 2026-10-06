@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.SalesChannels;
 import com.naissant.naissantapp.service.SalesChannelsService;
 import com.naissant.naissantapp.repository.SalesChannelsRepository;
@@ -29,12 +30,12 @@ public class SalesChannelsServiceImp implements SalesChannelsService{
 
     @Override
     public SalesChannels add(SalesChannels s) {
-        return repository.save(s);
+        return repository.save(Audit.created(s));
     }
 
     @Override
     public SalesChannels edit(SalesChannels s) {
-        return repository.save(s);
+        return repository.save(Audit.updated(s));
     }
     
     @Override

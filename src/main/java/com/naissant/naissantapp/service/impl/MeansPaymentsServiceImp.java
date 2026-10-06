@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.MeansPayments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,12 @@ public class MeansPaymentsServiceImp implements MeansPaymentsService {
 
     @Override
     public MeansPayments add(MeansPayments m) {
-        return repository.save(m);
+        return repository.save(Audit.created(m));
     }
 
     @Override
     public MeansPayments edit(MeansPayments m) {
-        return repository.save(m);
+        return repository.save(Audit.updated(m));
     }
     
     @Override

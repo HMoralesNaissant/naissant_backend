@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.repository.VisitantesRepositorio;
 import com.naissant.naissantapp.entity.Visitantes;
@@ -55,12 +56,12 @@ public class VisitantesServiceImp implements VisitantesService{
 
     @Override
     public Visitantes add(Visitantes v) {
-        return repositorio.save(v);
+        return repositorio.save(Audit.created(v));
     }
 
     @Override
     public Visitantes edit(Visitantes v) {
-        return repositorio.save(v);
+        return repositorio.save(Audit.updated(v));
     }
     
     @Override

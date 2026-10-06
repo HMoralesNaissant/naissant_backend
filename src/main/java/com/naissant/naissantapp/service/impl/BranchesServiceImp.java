@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Branches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,12 @@ public class BranchesServiceImp implements BranchesService{
 
     @Override
     public Branches add(Branches b) {
-        return repository.save(b);
+        return repository.save(Audit.created(b));
     }
 
     @Override
     public Branches edit(Branches b) {
-        return repository.save(b);
+        return repository.save(Audit.updated(b));
     }
     
     @Override

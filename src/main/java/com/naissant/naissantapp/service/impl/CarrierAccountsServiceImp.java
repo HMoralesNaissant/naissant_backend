@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.CarrierAccounts;
 import com.naissant.naissantapp.repository.CarrierAccountsRepository;
 import com.naissant.naissantapp.service.CarrierAccountsService;
@@ -30,12 +31,12 @@ public class CarrierAccountsServiceImp implements CarrierAccountsService{
 
     @Override
     public CarrierAccounts add(CarrierAccounts c) {
-        return repository.save(c);
+        return repository.save(Audit.created(c));
     }
 
     @Override
     public CarrierAccounts edit(CarrierAccounts c) {
-        return repository.save(c);
+        return repository.save(Audit.updated(c));
     }
     
     @Override

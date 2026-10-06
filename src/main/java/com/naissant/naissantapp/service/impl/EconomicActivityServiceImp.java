@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EconomicActivity;
 import com.naissant.naissantapp.service.EconomicActivityService;
 import com.naissant.naissantapp.repository.EconomicActivityRepository;
@@ -29,12 +30,12 @@ public class EconomicActivityServiceImp implements EconomicActivityService{
 
     @Override
     public EconomicActivity add(EconomicActivity a) {
-        return repository.save(a);
+        return repository.save(Audit.created(a));
     }
 
     @Override
     public EconomicActivity edit(EconomicActivity a) {
-        return repository.save(a);
+        return repository.save(Audit.updated(a));
     }
     
     @Override

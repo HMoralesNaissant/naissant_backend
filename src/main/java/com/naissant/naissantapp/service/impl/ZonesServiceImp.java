@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Zones;
 import com.naissant.naissantapp.service.ZonesService;
 import com.naissant.naissantapp.repository.ZonesRepository;
@@ -29,12 +30,12 @@ public class ZonesServiceImp implements ZonesService{
 
     @Override
     public Zones add(Zones z) {
-        return repository.save(z);
+        return repository.save(Audit.created(z));
     }
 
     @Override
     public Zones edit(Zones z) {
-        return repository.save(z);
+        return repository.save(Audit.updated(z));
     }
     
     @Override

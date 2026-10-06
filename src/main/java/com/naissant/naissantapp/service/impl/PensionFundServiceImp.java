@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PensionFund;
 import com.naissant.naissantapp.service.PensionFundService;
 import com.naissant.naissantapp.repository.PensionFundRepository;
@@ -29,12 +30,12 @@ public class PensionFundServiceImp implements PensionFundService{
 
     @Override
     public PensionFund add(PensionFund p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public PensionFund edit(PensionFund p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

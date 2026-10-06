@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EntitiesTemporary;
 import com.naissant.naissantapp.service.EntitiesTemporaryService;
 import com.naissant.naissantapp.repository.EntitiesTemporaryRepository;
@@ -29,12 +30,12 @@ public class EntitiesTemporaryServiceImp implements EntitiesTemporaryService{
 
     @Override
     public EntitiesTemporary add(EntitiesTemporary a) {
-        return repository.save(a);
+        return repository.save(Audit.created(a));
     }
 
     @Override
     public EntitiesTemporary edit(EntitiesTemporary t) {
-        return repository.save(t);
+        return repository.save(Audit.updated(t));
     }
     
     @Override

@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Reportados;
 import com.naissant.naissantapp.repository.ReportadosRepositorio;
 import com.naissant.naissantapp.service.ReportadosService;
@@ -30,12 +31,12 @@ public class ReportadosServiceImp implements ReportadosService {
 
     @Override
     public Reportados add(Reportados r) {
-        return repositorio.save(r);
+        return repositorio.save(Audit.created(r));
     }
 
     @Override
     public Reportados edit(Reportados r) {
-        return repositorio.save(r);
+        return repositorio.save(Audit.updated(r));
     }
     
     @Override

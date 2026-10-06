@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Persons;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class PersonsServiceImp implements PersonsService{
 
     @Override
     public Persons add(Persons p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public Persons edit(Persons p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

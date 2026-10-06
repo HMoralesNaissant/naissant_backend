@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Franchises;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,12 @@ public class FranchisesServiceImp implements FranchisesService {
 
     @Override
     public Franchises add(Franchises f) {
-        return repository.save(f);
+        return repository.save(Audit.created(f));
     }
 
     @Override
     public Franchises edit(Franchises f) {
-        return repository.save(f);
+        return repository.save(Audit.updated(f));
     }
     
     @Override

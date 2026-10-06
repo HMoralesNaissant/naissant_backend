@@ -5,6 +5,8 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.GenFiles;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 import org.slf4j.Logger;
@@ -55,12 +56,12 @@ public class GenFilesServiceImp implements GenFilesService {
 
     @Override
     public GenFiles add(GenFiles f) {
-        return repository.save(f);
+        return repository.save(Audit.created(f));
     }
 
     @Override
     public GenFiles edit(GenFiles f) {
-        return repository.save(f);
+        return repository.save(Audit.updated(f));
     }
 
     @Override
@@ -96,13 +97,9 @@ public class GenFilesServiceImp implements GenFilesService {
         files.setTypeFile(format);
         files.setUrl(newFilePath.toString());
         files.setDescription(description);
-        files.setUser_create("ADMIN");
         files.setFileType(fileType);
-        files.setDate_create(new Date());
-        files.setUser_update("ADMIN");
-        files.setDate_update(new Date());
 
-        return repository.save(files);
+        return repository.save(Audit.created(files));
 
     }
 
@@ -161,7 +158,7 @@ public class GenFilesServiceImp implements GenFilesService {
         if (resource.exists() && resource.isReadable()) {
             return resource;
         } else {
-            throw new RuntimeException("No se puede leer el archivo ");
+            return null;
         }
     }
 

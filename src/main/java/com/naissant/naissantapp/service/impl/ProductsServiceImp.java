@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.GenFiles;
 import com.naissant.naissantapp.entity.Products;
@@ -57,12 +58,12 @@ public class ProductsServiceImp implements ProductsService{
 
     @Override
     public Products add(Products p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public Products edit(Products p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

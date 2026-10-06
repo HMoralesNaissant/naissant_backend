@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.repository.CitysRepository;
 import com.naissant.naissantapp.entity.Citys;
 import com.naissant.naissantapp.service.CitysService;
@@ -29,12 +30,12 @@ public class CitysServiceImp implements CitysService{
 
     @Override
     public Citys add(Citys c) {
-        return repositorio.save(c);
+        return repositorio.save(Audit.created(c));
     }
 
     @Override
     public Citys edit(Citys c) {
-        return repositorio.save(c);
+        return repositorio.save(Audit.updated(c));
     }
     
     @Override

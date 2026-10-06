@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.Carrier;
 import com.naissant.naissantapp.entity.GenFiles;
@@ -56,12 +57,12 @@ public class CarrierServiceImp implements CarrierService{
 
     @Override
     public Carrier add(Carrier c) {
-        return repository.save(c);
+        return repository.save(Audit.created(c));
     }
 
     @Override
     public Carrier edit(Carrier c) {
-        return repository.save(c);
+        return repository.save(Audit.updated(c));
     }
     
     @Override

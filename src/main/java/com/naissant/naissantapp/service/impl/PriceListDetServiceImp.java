@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.PriceListDet;
 import com.naissant.naissantapp.service.PriceListDetService;
 import com.naissant.naissantapp.repository.PriceListDetRepository;
@@ -29,12 +30,12 @@ public class PriceListDetServiceImp implements PriceListDetService{
 
     @Override
     public PriceListDet add(PriceListDet p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public PriceListDet edit(PriceListDet p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override

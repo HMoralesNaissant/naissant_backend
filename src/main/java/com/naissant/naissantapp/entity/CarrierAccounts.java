@@ -19,7 +19,7 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class CarrierAccounts {
+public class CarrierAccounts implements Auditable {
     
     
     @Id

@@ -16,7 +16,7 @@ import jakarta.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class SalesChannels {
+public class SalesChannels implements Auditable {
     
     
     @Id

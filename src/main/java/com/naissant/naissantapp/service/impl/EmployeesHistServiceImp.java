@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.EmployeesHist;
 import com.naissant.naissantapp.repository.EmployeesHistRepository;
 import com.naissant.naissantapp.service.EmployeesHistService;
@@ -30,12 +31,12 @@ public class EmployeesHistServiceImp implements EmployeesHistService{
 
     @Override
     public EmployeesHist add(EmployeesHist m) {
-        return repository.save(m);
+        return repository.save(Audit.created(m));
     }
 
     @Override
     public EmployeesHist edit(EmployeesHist m) {
-        return repository.save(m);
+        return repository.save(Audit.updated(m));
     }
     
     @Override

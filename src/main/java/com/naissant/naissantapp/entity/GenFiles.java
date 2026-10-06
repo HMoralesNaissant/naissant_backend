@@ -19,7 +19,7 @@ import jakarta.persistence.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
-public class GenFiles {
+public class GenFiles implements Auditable {
     
     @Id
     @Column

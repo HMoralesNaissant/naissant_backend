@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.constants.GenFilesTypes;
 import com.naissant.naissantapp.entity.GenFiles;
 import com.naissant.naissantapp.entity.Users;
@@ -55,12 +56,12 @@ public class UsersServiceImp implements UsersService {
 
     @Override
     public Users add(Users u) {
-        return repository.save(u);
+        return repository.save(Audit.created(u));
     }
 
     @Override
     public Users edit(Users u) {
-        return repository.save(u);
+        return repository.save(Audit.updated(u));
     }
 
     @Override

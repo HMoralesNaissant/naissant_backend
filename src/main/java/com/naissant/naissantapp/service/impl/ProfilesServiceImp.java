@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.service.impl;
 
+import com.naissant.naissantapp.service.Audit;
 import com.naissant.naissantapp.entity.Profiles;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class ProfilesServiceImp implements ProfilesService{
 
     @Override
     public Profiles add(Profiles p) {
-        return repository.save(p);
+        return repository.save(Audit.created(p));
     }
 
     @Override
     public Profiles edit(Profiles p) {
-        return repository.save(p);
+        return repository.save(Audit.updated(p));
     }
     
     @Override
