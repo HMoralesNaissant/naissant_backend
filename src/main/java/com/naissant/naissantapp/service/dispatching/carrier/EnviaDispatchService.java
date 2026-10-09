@@ -7,11 +7,13 @@ import com.naissant.naissantapp.entity.CarrierAccounts;
 import com.naissant.naissantapp.entity.Citys;
 import com.naissant.naissantapp.entity.DispatchsLabels;
 import com.naissant.naissantapp.entity.InvoicesHeader;
+import com.naissant.naissantapp.entity.Customers;
 import com.naissant.naissantapp.repository.CitysRepository;
 import com.naissant.naissantapp.repository.CompanyRepository;
 import com.naissant.naissantapp.repository.CarrierAccountsRepository;
 import com.naissant.naissantapp.repository.CarrierRepository;
 import com.naissant.naissantapp.repository.InvoicesHeaderRepository;
+import com.naissant.naissantapp.repository.CustomersRepository;
 import com.naissant.naissantapp.service.CarrierDispatchService;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchRequest;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchResponse;
@@ -44,6 +46,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
     private final InvoicesHeaderRepository invoicesHeaderRepository;
     private final CompanyRepository companyRepository;
     private final CitysRepository citysRepository;
+    private final CustomersRepository customersRepository;
 
     public EnviaDispatchService(
             WebClient.Builder webClientBuilder,
@@ -52,7 +55,8 @@ public class EnviaDispatchService implements CarrierDispatchService {
             CarrierAccountsRepository carrierAccountsRepository,
             InvoicesHeaderRepository invoicesHeaderRepository,
             CompanyRepository companyRepository,
-            CitysRepository citysRepository) {
+            CitysRepository citysRepository,
+            CustomersRepository customersRepository) {
         this.webClient = webClientBuilder.build();
         this.objectMapper = objectMapper;
         this.carrierRepository = carrierRepository;
@@ -60,6 +64,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
         this.invoicesHeaderRepository = invoicesHeaderRepository;
         this.companyRepository = companyRepository;
         this.citysRepository = citysRepository;
+        this.customersRepository = customersRepository;
     }
 
     @Override
@@ -118,8 +123,10 @@ public class EnviaDispatchService implements CarrierDispatchService {
             content.setDiceContener(diceContener);
             content.setTextoGuia(textoGuia);
             content.setCentroCosto(centroCosto);
+            content.setValorProducto("0");
         }
         request.setInfoContenido(content);
+        request.setNumeroGuia("");
         request.setGenerarOs(readValue(additionalInfo, String.class, "generar_os"));
         return request;
     }
@@ -285,6 +292,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
                 new EnviaDispatchRequest.DestinationInfo();
         destination.setNomDestinatario(invoice.getCustomer());
         destination.setDirDestinatario(invoice.getBranch_address());
+        destination.setTelDestinatario("");
         destination.setCedDestinatario(
                 invoice.getNit() == null ? null : invoice.getNit().toString());
         return destination;
