@@ -29,13 +29,13 @@ public class InvoicesHeader implements Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company companyId;
     @Column
-    private Double invoice;
+    private Integer invoice;
     @Column
     private Date invoice_date;
     @Column
     private String customer_code;
     @Column
-    private Double nit;
+    private Integer nit;
     @Column
     private String customer;
     @Column
@@ -43,9 +43,9 @@ public class InvoicesHeader implements Auditable {
     @Column
     private String payment_forms;
     @Column
-    private Double total_items;
+    private Integer total_items;
     @Column
-    private Double total_units;
+    private Integer total_units;
     @Column
     private Date expiration_date;
     @Column
@@ -55,13 +55,13 @@ public class InvoicesHeader implements Auditable {
     @Column
     private BigDecimal total;
     @Column
-    private Double orders_num;
+    private Integer orders_num;
     @Column
-    private Double advisor_code;
+    private Integer advisor_code;
     @Column
     private String observations;
     @Column
-    private Double docentry;
+    private Integer docentry;
     @Column
     private char status;
     @Column

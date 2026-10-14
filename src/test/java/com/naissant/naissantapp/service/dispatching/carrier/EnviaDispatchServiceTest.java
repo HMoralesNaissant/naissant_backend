@@ -8,6 +8,8 @@ import com.naissant.naissantapp.repository.CarrierRepository;
 import com.naissant.naissantapp.repository.CitysRepository;
 import com.naissant.naissantapp.repository.CompanyRepository;
 import com.naissant.naissantapp.repository.InvoicesHeaderRepository;
+import com.naissant.naissantapp.repository.CustomersRepository;
+import com.naissant.naissantapp.repository.PersonsRepository;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -44,7 +46,9 @@ class EnviaDispatchServiceTest {
                 mock(CarrierAccountsRepository.class),
                 mock(InvoicesHeaderRepository.class),
                 mock(CompanyRepository.class),
-                mock(CitysRepository.class));
+                mock(CitysRepository.class),
+                mock(CustomersRepository.class),
+                mock(PersonsRepository.class));
 
         EnviaDispatchRequest request = service.generateOrderRequest(dispatch);
 

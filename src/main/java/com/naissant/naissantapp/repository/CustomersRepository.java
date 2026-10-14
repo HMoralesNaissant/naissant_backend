@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 @org.springframework.stereotype.Repository
 public interface CustomersRepository extends JpaRepository<Customers, Integer>{
@@ -30,5 +31,8 @@ public interface CustomersRepository extends JpaRepository<Customers, Integer>{
     @EntityGraph(attributePaths = {"personId", "cityBranchId"})
     List<Customers>findByAdvisorId_Id(int id_advisor);
     @EntityGraph(attributePaths = {"personId", "cityBranchId"})
-    List<Customers>findByCompanyCode(String company_code);
+    List<Customers>findByCustomerCode(String customer_code);
+    /*@EntityGraph(attributePaths = {"personId"})
+    @Query("SELECT c FROM Customers c WHERE c.customerCode = :customerCode")
+    Customers findByCustomerCode(String customerCode);*/
 }

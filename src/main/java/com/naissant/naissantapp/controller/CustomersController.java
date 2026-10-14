@@ -110,10 +110,10 @@ public class CustomersController {
         }
     }
 
-    @GetMapping(path = {"/findByCode/{company_code}"})
-    public ResponseEntity listarByCodeCompany(@PathVariable("company_code") String company_code) {
+    @GetMapping(path = {"/findByCode/{customer_code}"})
+    public ResponseEntity listarByCodeCustomer(@PathVariable("customer_code") String customer_code) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByCodeCompany(company_code), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByCodeCustomer(customer_code), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()

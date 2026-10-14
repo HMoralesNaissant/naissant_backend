@@ -54,8 +54,8 @@ public class CustomersServiceImp implements CustomersService{
     }
 
     @Override
-    public List<Customers> listarByCodeCompany(String company_code) {
-        return repository.findByCompanyCode(company_code);
+    public List<Customers> listarByCodeCustomer(String customer_code) {
+        return repository.findByCustomerCode(customer_code);
     }
 
     @Override

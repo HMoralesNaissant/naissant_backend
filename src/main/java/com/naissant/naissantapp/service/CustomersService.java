@@ -19,5 +19,5 @@ public interface CustomersService {
     List<Customers>listarByIdPerson(int id_person);
     List<Customers>listarByIdZone(int id_zone);
     List<Customers>listarByIdAdvisor(int id_advisor);
-    List<Customers>listarByCodeCompany(String company_code);
+    List<Customers>listarByCodeCustomer(String customer_code);
 }

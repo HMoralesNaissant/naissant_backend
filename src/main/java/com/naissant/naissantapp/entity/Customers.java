@@ -28,8 +28,8 @@ public class Customers implements Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Persons personId;
     @Column
-    @JoinColumn(name = "company_code")
-    private String companyCode;
+    @JoinColumn(name = "customer_code")
+    private String customerCode;
     @Column
     private String company_name;
     @Column

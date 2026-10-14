@@ -1,19 +1,8 @@
 package com.naissant.naissantapp.service.dispatching.carrier;
 
+import com.naissant.naissantapp.entity.*;
+import com.naissant.naissantapp.repository.*;
 import tools.jackson.databind.JsonNode;
-import com.naissant.naissantapp.entity.Company;
-import com.naissant.naissantapp.entity.Carrier;
-import com.naissant.naissantapp.entity.CarrierAccounts;
-import com.naissant.naissantapp.entity.Citys;
-import com.naissant.naissantapp.entity.DispatchsLabels;
-import com.naissant.naissantapp.entity.InvoicesHeader;
-import com.naissant.naissantapp.entity.Customers;
-import com.naissant.naissantapp.repository.CitysRepository;
-import com.naissant.naissantapp.repository.CompanyRepository;
-import com.naissant.naissantapp.repository.CarrierAccountsRepository;
-import com.naissant.naissantapp.repository.CarrierRepository;
-import com.naissant.naissantapp.repository.InvoicesHeaderRepository;
-import com.naissant.naissantapp.repository.CustomersRepository;
 import com.naissant.naissantapp.service.CarrierDispatchService;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchRequest;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchResponse;
@@ -47,6 +36,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
     private final CompanyRepository companyRepository;
     private final CitysRepository citysRepository;
     private final CustomersRepository customersRepository;
+    private final PersonsRepository personsRepository;
 
     public EnviaDispatchService(
             WebClient.Builder webClientBuilder,
@@ -56,7 +46,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
             InvoicesHeaderRepository invoicesHeaderRepository,
             CompanyRepository companyRepository,
             CitysRepository citysRepository,
-            CustomersRepository customersRepository) {
+            CustomersRepository customersRepository, PersonsRepository personsRepository) {
         this.webClient = webClientBuilder.build();
         this.objectMapper = objectMapper;
         this.carrierRepository = carrierRepository;
@@ -65,6 +55,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
         this.companyRepository = companyRepository;
         this.citysRepository = citysRepository;
         this.customersRepository = customersRepository;
+        this.personsRepository = personsRepository;
     }
 
     @Override
@@ -288,11 +279,23 @@ public class EnviaDispatchService implements CarrierDispatchService {
             return null;
         }
 
+        Customers customer = customersRepository.findByCustomerCode(invoice.getCustomer_code())
+                .stream()
+                .findFirst()
+                .orElse(null);
+        if (customer == null) {
+            return null;
+        }
+
+        String customerPhone = customer.getPersonId().getCellular() == null
+                ? customer.getPersonId().getPhone()
+                : customer.getPersonId().getCellular();
+
         EnviaDispatchRequest.DestinationInfo destination =
                 new EnviaDispatchRequest.DestinationInfo();
         destination.setNomDestinatario(invoice.getCustomer());
         destination.setDirDestinatario(invoice.getBranch_address());
-        destination.setTelDestinatario("");
+        destination.setTelDestinatario(customerPhone);
         destination.setCedDestinatario(
                 invoice.getNit() == null ? null : invoice.getNit().toString());
         return destination;
