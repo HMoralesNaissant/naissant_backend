@@ -6,6 +6,7 @@ import com.naissant.naissantapp.entity.DispatchsLabels;
 import com.naissant.naissantapp.entity.InvoicesHeader;
 import com.naissant.naissantapp.repository.CarrierRepository;
 import com.naissant.naissantapp.repository.DispatchLabelsResponseRepository;
+import com.naissant.naissantapp.repository.DispatchsLabelsRepository;
 import com.naissant.naissantapp.service.CarrierDispatchService;
 import com.naissant.naissantapp.domain.DispatchBodyDto;
 import com.naissant.naissantapp.domain.carriers.CarrierOrderResponse;
@@ -21,15 +22,18 @@ public class CarriersDispatchersHandlerService {
 
     private final List<CarrierDispatchService> carrierServices;
     private final DispatchLabelsResponseRepository responseRepository;
+    private final DispatchsLabelsRepository dispatchsLabelsRepository;
     private final CarrierRepository carrierRepository;
 
     @Autowired
     public CarriersDispatchersHandlerService(
             List<CarrierDispatchService> carrierServices,
             DispatchLabelsResponseRepository responseRepository,
+            DispatchsLabelsRepository dispatchsLabelsRepository,
             CarrierRepository carrierRepository) {
         this.carrierServices = carrierServices;
         this.responseRepository = responseRepository;
+        this.dispatchsLabelsRepository = dispatchsLabelsRepository;
         this.carrierRepository = carrierRepository;
     }
 
@@ -76,8 +80,10 @@ public class CarriersDispatchersHandlerService {
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Carrier " + dispatchsLabels.getCarrierId().getId() + " was not found"));
         dispatchsLabels.setCarrierId(carrier);
-        CarrierOrderResponse carrierResponse =
-                findCarrierService(carrier).dispatchOrder(dispatchsLabels);
+        CarrierDispatchService carrierService = findCarrierService(carrier);
+        CarrierOrderResponse carrierResponse = carrierService.dispatchOrder(dispatchsLabels);
+        carrierService.postDispatch(carrierResponse, dispatchsLabels);
+        dispatchsLabelsRepository.save(dispatchsLabels);
         responseRepository.save(createResponseRecord(dispatchsLabels, carrierResponse));
         return carrierResponse;
     }

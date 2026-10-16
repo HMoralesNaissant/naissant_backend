@@ -9,4 +9,6 @@ public interface CarrierDispatchService {
     boolean supports(Carrier carrier);
 
     CarrierOrderResponse dispatchOrder(DispatchsLabels dispatchsLabels);
+
+    void postDispatch(CarrierOrderResponse carrierResponse, DispatchsLabels dispatchsLabels);
 }

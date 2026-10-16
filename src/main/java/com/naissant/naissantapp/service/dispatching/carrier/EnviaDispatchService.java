@@ -4,6 +4,7 @@ import com.naissant.naissantapp.entity.*;
 import com.naissant.naissantapp.repository.*;
 import tools.jackson.databind.JsonNode;
 import com.naissant.naissantapp.service.CarrierDispatchService;
+import com.naissant.naissantapp.domain.carriers.CarrierOrderResponse;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchRequest;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchResponse;
 import com.naissant.naissantapp.domain.carriers.EnviaAccountConfiguration;
@@ -173,6 +174,18 @@ public class EnviaDispatchService implements CarrierDispatchService {
                 .timeout(Duration.ofSeconds(30))
                 .doOnError(this::logGenerationError)
                 .block();
+    }
+
+    @Override
+    public void postDispatch(CarrierOrderResponse carrierResponse, DispatchsLabels dispatchsLabels) {
+        if (!(carrierResponse instanceof EnviaDispatchResponse enviaResponse)) {
+            throw new IllegalArgumentException("An Envia dispatch response is required");
+        }
+        if (dispatchsLabels == null) {
+            throw new IllegalArgumentException("Dispatch details are required");
+        }
+
+        dispatchsLabels.setLabel(enviaResponse.getGuia());
     }
 
     private void logGenerationError(Throwable error) {

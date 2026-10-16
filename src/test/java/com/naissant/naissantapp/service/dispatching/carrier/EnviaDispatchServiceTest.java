@@ -11,6 +11,7 @@ import com.naissant.naissantapp.repository.InvoicesHeaderRepository;
 import com.naissant.naissantapp.repository.CustomersRepository;
 import com.naissant.naissantapp.repository.PersonsRepository;
 import com.naissant.naissantapp.domain.carriers.EnviaDispatchRequest;
+import com.naissant.naissantapp.domain.carriers.EnviaDispatchResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -67,5 +68,26 @@ class EnviaDispatchServiceTest {
         assertEquals("2", json.get("mpesovolumen_k").asText());
         assertEquals("15;1502", json.get("info_contenido").get("centrocosto").asText());
         assertNotNull(json.get("info_contenido"));
+    }
+
+    @Test
+    void postDispatchStoresGuiaAsLabel() {
+        DispatchsLabels dispatch = new DispatchsLabels();
+        EnviaDispatchResponse response = new EnviaDispatchResponse();
+        response.setGuia("ENV123456");
+        EnviaDispatchService service = new EnviaDispatchService(
+                WebClient.builder(),
+                JsonMapper.builder().build(),
+                mock(CarrierRepository.class),
+                mock(CarrierAccountsRepository.class),
+                mock(InvoicesHeaderRepository.class),
+                mock(CompanyRepository.class),
+                mock(CitysRepository.class),
+                mock(CustomersRepository.class),
+                mock(PersonsRepository.class));
+
+        service.postDispatch(response, dispatch);
+
+        assertEquals("ENV123456", dispatch.getLabel());
     }
 }
