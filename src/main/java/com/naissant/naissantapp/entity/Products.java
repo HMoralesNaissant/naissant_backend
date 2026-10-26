@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,8 +32,9 @@ public class Products implements Auditable {
     private String description;
     @Column
     private String code;
-    @Column
-    private String bar_code;
+    @Column(name = "bar_code")
+    @JsonProperty("bar_code")
+    private String barCode;
     @Column(columnDefinition = "text")
     private String content;
     @Column
@@ -40,31 +42,39 @@ public class Products implements Auditable {
     @JoinColumn(name = "id_presentation", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private UndMeasures presentationId;
-    @Column
-    private Double quantity_pres;
+    @Column(name = "quantity_pres")
+    @JsonProperty("quantity_pres")
+    private Double quantityPres;
     @JoinColumn(name = "id_und_measures", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private UndMeasures undMeasuresId;
-    @Column
-    private Double stock_min;
-    @Column
-    private Double stock_max;
-    @Column
-    private BigDecimal price_cost;
+    @Column(name = "stock_min")
+    @JsonProperty("stock_min")
+    private Double stockMin;
+    @Column(name = "stock_max")
+    @JsonProperty("stock_max")
+    private Double stockMax;
+    @Column(name = "price_cost")
+    @JsonProperty("price_cost")
+    private BigDecimal priceCost;
     @Column
     private char kit;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     
 }

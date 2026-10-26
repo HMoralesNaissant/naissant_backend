@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,10 +35,12 @@ public class EntitiesEps implements Auditable {
     private String code;
     @Column
     private char regime;
-    @Column
-    private Double attention_line;
-    @Column
-    private String web_site;
+    @Column(name = "attention_line")
+    @JsonProperty("attention_line")
+    private Double attentionLine;
+    @Column(name = "web_site")
+    @JsonProperty("web_site")
+    private String webSite;
     @Column
     private String adviser;
     @Column
@@ -46,14 +49,18 @@ public class EntitiesEps implements Auditable {
     private String email;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     
 }

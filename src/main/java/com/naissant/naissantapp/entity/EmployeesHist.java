@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,29 +29,37 @@ public class EmployeesHist implements Auditable {
     @JoinColumn(name = "id_employee", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Employees employeeId;
-    @Column
-    private String contract_type;
+    @Column(name = "contract_type")
+    @JsonProperty("contract_type")
+    private String contractType;
     @Column
     private Double contract;
     @Column
     private BigDecimal salary;
     @Column
     private BigDecimal bonus;
-    @Column
-    private char types_bonus;
-    @Column
-    private Date entry_date;
-    @Column
-    private Date retirement_date;
+    @Column(name = "types_bonus")
+    @JsonProperty("types_bonus")
+    private char typesBonus;
+    @Column(name = "entry_date")
+    @JsonProperty("entry_date")
+    private Date entryDate;
+    @Column(name = "retirement_date")
+    @JsonProperty("retirement_date")
+    private Date retirementDate;
     @Column
     private String observations;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

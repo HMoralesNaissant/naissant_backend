@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,29 +30,37 @@ public class DispatchsControl {
     private InvoicesHeader invoiceId;
     @Column
     private char enlisted;
-    @Column
-    private String user_enlisted;
-    @Column
-    private Date date_enlisted;
+    @Column(name = "user_enlisted")
+    @JsonProperty("user_enlisted")
+    private String userEnlisted;
+    @Column(name = "date_enlisted")
+    @JsonProperty("date_enlisted")
+    private Date dateEnlisted;
     @Column
     private char verified;
-    @Column
-    private String user_verified;
-    @Column
-    private Date date_verified;
+    @Column(name = "user_verified")
+    @JsonProperty("user_verified")
+    private String userVerified;
+    @Column(name = "date_verified")
+    @JsonProperty("date_verified")
+    private Date dateVerified;
     @Column
     private char dispatched;
-    @Column
-    private String user_dispatched;
-    @Column
-    private Date date_dispatched;
+    @Column(name = "user_dispatched")
+    @JsonProperty("user_dispatched")
+    private String userDispatched;
+    @Column(name = "date_dispatched")
+    @JsonProperty("date_dispatched")
+    private Date dateDispatched;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
     @Column
     private char status;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

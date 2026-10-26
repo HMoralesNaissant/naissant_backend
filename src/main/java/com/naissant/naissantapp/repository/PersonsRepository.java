@@ -18,7 +18,7 @@ public interface PersonsRepository extends Repository<Persons, Integer>{
     void delete(Persons p);
     
     List<Persons>findByCompanyId_Id(int id_company);
-    List<Persons>findByIdentification(Double identification);
+    List<Persons>findByIdentification(String identification);
     List<Persons>findByDepartmentsId_Id(int id_departments);
     List<Persons>findByCityId_Id(int id_city);
 }

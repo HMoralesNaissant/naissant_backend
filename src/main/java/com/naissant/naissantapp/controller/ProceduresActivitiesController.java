@@ -89,9 +89,9 @@ public class ProceduresActivitiesController {
     }
     
     @GetMapping(path = {"/findByTypeProcedure/{type_procedure}"})
-    public ResponseEntity listarByTypeProcedure(@PathVariable("type_procedure") String type_procedure) {
+    public ResponseEntity listarByTypeProcedure(@PathVariable("type_procedure") String typeProcedure) {
         try {
-            return ResponseEntity.ok(new ResponseDto(service.listarByTypeProcedure(type_procedure), true));
+            return ResponseEntity.ok(new ResponseDto(service.listarByTypeProcedure(typeProcedure), true));
         } catch (Exception e) {
             LOG.error("No se pudo completar ", e);
             return ResponseEntity.internalServerError()

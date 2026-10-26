@@ -5,7 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,35 +30,21 @@ public class ProceduresActivities implements Auditable {
     @Column
     private String description;
     @JoinColumn(name = "type_procedure")
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
+    @JsonProperty("type_procedure")
     private String typeProcedure;
-    /*@Column
-    private String type_procedure;*/
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
-    public String getType_procedure() {
-        return typeProcedure;
-    }
-
-    public void setType_procedure(String typeProcedure) {
-        this.typeProcedure = typeProcedure;
-    }
-    /*public String getType_procedure() {
-        return type_procedure;
-    }
-
-    public void setType_procedure(String type_procedure) {
-        this.type_procedure = type_procedure;
-    }*/
-    
 }

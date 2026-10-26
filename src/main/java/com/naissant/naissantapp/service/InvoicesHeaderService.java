@@ -18,5 +18,5 @@ public interface InvoicesHeaderService {
     
     List<InvoicesHeader>listarByIdCompany(int id_company);
     List<InvoicesHeader>listarByStatus(char status);
-    List<InvoicesHeader>listarByInvoice(Double invoice);
+    List<InvoicesHeader>listarByInvoice(String invoice);
 }

@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProceduresActivitiesRepository extends JpaRepository<ProceduresActivities, Integer>{
     
     List<ProceduresActivities>findByCompanyId_Id(int id_company);
-    List<ProceduresActivities>findByTypeProcedure(String type_procedure);
+    List<ProceduresActivities>findByTypeProcedure(String typeProcedure);
 }

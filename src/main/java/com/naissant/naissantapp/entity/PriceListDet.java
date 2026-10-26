@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -37,20 +38,27 @@ public class PriceListDet implements Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Products productId;
         
-    @Column
-    private BigDecimal sale_price;
-    @Column
-    private BigDecimal revenue_margin;
-    @Column
-    private BigDecimal revenue_percentage;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "sale_price")
+    @JsonProperty("sale_price")
+    private BigDecimal salePrice;
+    @Column(name = "revenue_margin")
+    @JsonProperty("revenue_margin")
+    private BigDecimal revenueMargin;
+    @Column(name = "revenue_percentage")
+    @JsonProperty("revenue_percentage")
+    private BigDecimal revenuePercentage;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
    
 }

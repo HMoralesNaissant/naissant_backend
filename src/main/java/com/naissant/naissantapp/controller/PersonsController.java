@@ -89,7 +89,7 @@ public class PersonsController {
     }
     
     @GetMapping(path = {"/findByIdentification/{identification}"})
-    public ResponseEntity listarByIdentification(@PathVariable("identification") Double identification) {
+    public ResponseEntity listarByIdentification(@PathVariable("identification") String identification) {
         try {
             return ResponseEntity.ok(new ResponseDto(service.listarByIdentification(identification), true));
         } catch (Exception e) {

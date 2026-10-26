@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,28 +29,35 @@ public class Disabilities implements Auditable {
     private Employees employeeId;
     @Column
     private String entity;
-    @Column
-    private Date start_date;
-    @Column
-    private Date end_date;
+    @Column(name = "start_date")
+    @JsonProperty("start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    @JsonProperty("end_date")
+    private Date endDate;
     @Column
     private char filed;
-    @Column
-    private String payment_status;
+    @Column(name = "payment_status")
+    @JsonProperty("payment_status")
+    private String paymentStatus;
     @Column
     private String observations;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     
 

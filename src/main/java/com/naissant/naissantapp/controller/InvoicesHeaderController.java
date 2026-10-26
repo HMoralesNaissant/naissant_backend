@@ -82,7 +82,7 @@ public class InvoicesHeaderController {
     }
 
     @GetMapping(path = {"/findByInvoice/{invoice}"})
-    public ResponseEntity listarByInvoice(@PathVariable("invoice") Double invoice) {
+    public ResponseEntity listarByInvoice(@PathVariable("invoice") String invoice) {
         try {
             return ResponseEntity.ok(new ResponseDto(service.listarByInvoice(invoice), true));
         } catch (Exception e) {

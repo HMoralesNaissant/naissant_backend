@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,12 +28,15 @@ public class Employees implements Auditable {
     @JoinColumn(name = "id_person", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Persons personId;
-    @Column
-    private String marital_status;
-    @Column
-    private String emergency_contact;
-    @Column
-    private String contact_phone;
+    @Column(name = "marital_status")
+    @JsonProperty("marital_status")
+    private String maritalStatus;
+    @Column(name = "emergency_contact")
+    @JsonProperty("emergency_contact")
+    private String emergencyContact;
+    @Column(name = "contact_phone")
+    @JsonProperty("contact_phone")
+    private String contactPhone;
     @Column
     private String schooling;
     @Column
@@ -42,8 +46,9 @@ public class Employees implements Auditable {
     @JoinColumn(name = "id_temporary", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private EntitiesTemporary temporaryId;
-    @Column
-    private String contract_type;
+    @Column(name = "contract_type")
+    @JsonProperty("contract_type")
+    private String contractType;
     @JoinColumn(name = "id_labor_dpto", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Departments laborDptoId;
@@ -65,44 +70,56 @@ public class Employees implements Auditable {
     @JoinColumn(name = "id_pension", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private PensionFund pensionId;
-    @Column
-    private Date entry_date;
-    @Column
-    private Date retirement_date;
+    @Column(name = "entry_date")
+    @JsonProperty("entry_date")
+    private Date entryDate;
+    @Column(name = "retirement_date")
+    @JsonProperty("retirement_date")
+    private Date retirementDate;
     @JoinColumn(name = "id_area", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Areas areaId;
     @JoinColumn(name = "id_charge", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Charges chargeId;
-    @Column
-    private BigDecimal expense_fund;
+    @Column(name = "expense_fund")
+    @JsonProperty("expense_fund")
+    private BigDecimal expenseFund;
     @Column
     private BigDecimal salary;
     @Column
     private BigDecimal bonus;
-    @Column
-    private char types_bonus;
-    @Column
-    private String shirt_size;
-    @Column
-    private String jeans_size;
-    @Column
-    private String shoes_size;
-    @Column
-    private String overalls_size;
+    @Column(name = "types_bonus")
+    @JsonProperty("types_bonus")
+    private char typesBonus;
+    @Column(name = "shirt_size")
+    @JsonProperty("shirt_size")
+    private String shirtSize;
+    @Column(name = "jeans_size")
+    @JsonProperty("jeans_size")
+    private String jeansSize;
+    @Column(name = "shoes_size")
+    @JsonProperty("shoes_size")
+    private String shoesSize;
+    @Column(name = "overalls_size")
+    @JsonProperty("overalls_size")
+    private String overallsSize;
     @Column
     private String observations;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     public void add() {
         throw new UnsupportedOperationException("Not supported yet."); 

@@ -6,6 +6,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -37,23 +38,30 @@ public class Visitas implements Auditable {
     @JoinColumn(name = "id_cargo", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Charges cargoId;
-    @Column
-    private Date fecha_visita;
-    @Column
-    private Date hora_ingreso;
-    @Column
-    private Date hora_salida;
+    @Column(name = "fecha_visita")
+    @JsonProperty("fecha_visita")
+    private Date fechaVisita;
+    @Column(name = "hora_ingreso")
+    @JsonProperty("hora_ingreso")
+    private Date horaIngreso;
+    @Column(name = "hora_salida")
+    @JsonProperty("hora_salida")
+    private Date horaSalida;
     @Column
     private String observacion;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

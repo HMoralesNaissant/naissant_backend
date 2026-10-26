@@ -57,7 +57,7 @@ public class DispatchLabelsResponse {
     private Date dateCreate;
 
     @Column(name = "invoice")
-    private Float invoice;
+    private String invoice;
 
     @Column(name = "customer_code", length = 20)
     private String customerCode;

@@ -44,7 +44,7 @@ public class PersonsServiceImp implements PersonsService{
     }
     
     @Override
-    public List<Persons> listarByIdentification(Double identification) {
+    public List<Persons> listarByIdentification(String identification) {
         return repository.findByIdentification(identification);
     }
     

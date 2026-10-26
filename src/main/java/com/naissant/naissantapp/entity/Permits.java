@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,30 +28,38 @@ public class Permits implements Auditable {
     @JoinColumn(name = "id_employee", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Employees employeeId;
-    @Column
-    private Date permit_date;
-    @Column
-    private String type_permit;
+    @Column(name = "permit_date")
+    @JsonProperty("permit_date")
+    private Date permitDate;
+    @Column(name = "type_permit")
+    @JsonProperty("type_permit")
+    private String typePermit;
     @Column
     private char paid;
-    @Column
-    private Date start_date;
-    @Column
-    private Date end_date;
+    @Column(name = "start_date")
+    @JsonProperty("start_date")
+    private Date startDate;
+    @Column(name = "end_date")
+    @JsonProperty("end_date")
+    private Date endDate;
     @Column
     private String observations;
     @Column(name= "id_file", nullable = true)
     private Integer fileId;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     public void add() {
         throw new UnsupportedOperationException("Not supported yet."); 

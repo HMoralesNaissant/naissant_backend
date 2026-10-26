@@ -44,8 +44,8 @@ public class ProceduresActivitiesServiceImp implements ProceduresActivitiesServi
     }
     
     @Override
-    public List<ProceduresActivities> listarByTypeProcedure(String type_procedure) {
-        return repository.findByTypeProcedure(type_procedure);
+    public List<ProceduresActivities> listarByTypeProcedure(String typeProcedure) {
+        return repository.findByTypeProcedure(typeProcedure);
     }
 
     @Override

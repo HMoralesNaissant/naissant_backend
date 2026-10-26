@@ -31,7 +31,7 @@ public interface CustomersRepository extends JpaRepository<Customers, Integer>{
     @EntityGraph(attributePaths = {"personId", "cityBranchId"})
     List<Customers>findByAdvisorId_Id(int id_advisor);
     @EntityGraph(attributePaths = {"personId", "cityBranchId"})
-    List<Customers>findByCustomerCode(String customer_code);
+    List<Customers>findByCustomerCode(String customerCode);
     /*@EntityGraph(attributePaths = {"personId"})
     @Query("SELECT c FROM Customers c WHERE c.customerCode = :customerCode")
     Customers findByCustomerCode(String customerCode);*/

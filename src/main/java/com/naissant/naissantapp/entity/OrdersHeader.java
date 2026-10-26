@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,30 +40,38 @@ public class OrdersHeader implements Auditable {
     @JoinColumn(name = "id_payment_form", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private PaymentForms paymentFormId;
-    @Column
-    private String order_prefix;
+    @Column(name = "order_prefix")
+    @JsonProperty("order_prefix")
+    private String orderPrefix;
     @Column
     private Double consecutive;
-    @Column
-    private Double quantity_units;
+    @Column(name = "quantity_units")
+    @JsonProperty("quantity_units")
+    private Double quantityUnits;
     @Column
     private BigDecimal subtotal;
-    @Column
-    private BigDecimal porcentage_iva;
-    @Column
-    private BigDecimal vr_iva;
+    @Column(name = "porcentage_iva")
+    @JsonProperty("porcentage_iva")
+    private BigDecimal porcentageIva;
+    @Column(name = "vr_iva")
+    @JsonProperty("vr_iva")
+    private BigDecimal vrIva;
     @Column
     private BigDecimal total;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
     
     
 }

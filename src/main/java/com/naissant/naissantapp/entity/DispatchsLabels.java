@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,12 +42,15 @@ public class DispatchsLabels implements Auditable {
     private CarrierAccounts carrierAccId;
     @Column
     private Integer boxes;
-    @Column
-    private BigDecimal weight_kg;
-    @Column
-    private BigDecimal declared_value;
-    @Column
-    private char chain_store;
+    @Column(name = "weight_kg")
+    @JsonProperty("weight_kg")
+    private BigDecimal weightKg;
+    @Column(name = "declared_value")
+    @JsonProperty("declared_value")
+    private BigDecimal declaredValue;
+    @Column(name = "chain_store")
+    @JsonProperty("chain_store")
+    private char chainStore;
     @JoinColumn(name = "id_origin", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Citys originId;
@@ -64,13 +68,17 @@ public class DispatchsLabels implements Auditable {
     private Object additionalInfo;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

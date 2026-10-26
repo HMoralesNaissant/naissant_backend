@@ -14,5 +14,5 @@ public interface InvoicesHeaderRepository extends JpaRepository<InvoicesHeader, 
     
     List<InvoicesHeader>findByCompanyId_Id(int id_company);
     List<InvoicesHeader>findByStatus(char status);
-    List<InvoicesHeader>findByInvoice(Double invoice);
+    List<InvoicesHeader>findByInvoice(String invoice);
 }

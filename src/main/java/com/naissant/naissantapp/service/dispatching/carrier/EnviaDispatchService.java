@@ -74,12 +74,12 @@ public class EnviaDispatchService implements CarrierDispatchService {
 
         EnviaDispatchRequest request = new EnviaDispatchRequest();
         request.setCiudadOrigen(dispatchsLabels.getOriginId() == null
-                ? null : dispatchsLabels.getOriginId().getCod_dane());
+                ? null : dispatchsLabels.getOriginId().getCodDane());
         request.setCiudadDestino(dispatchsLabels.getDestinationId() == null
-                ? null : dispatchsLabels.getDestinationId().getCod_dane());
+                ? null : dispatchsLabels.getDestinationId().getCodDane());
         request.setNumUnidades(dispatchsLabels.getBoxes());
-        request.setMpesoRealK(dispatchsLabels.getWeight_kg());
-        request.setValorDeclarado(dispatchsLabels.getDeclared_value());
+        request.setMpesoRealK(dispatchsLabels.getWeightKg());
+        request.setValorDeclarado(dispatchsLabels.getDeclaredValue());
         request.setCodCuenta(dispatchsLabels.getCarrierAccId() == null
                 ? null : dispatchsLabels.getCarrierAccId().getAccounts());
 
@@ -292,7 +292,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
             return null;
         }
 
-        Customers customer = customersRepository.findByCustomerCode(invoice.getCustomer_code())
+        Customers customer = customersRepository.findByCustomerCode(invoice.getCustomerCode())
                 .stream()
                 .findFirst()
                 .orElse(null);
@@ -307,7 +307,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
         EnviaDispatchRequest.DestinationInfo destination =
                 new EnviaDispatchRequest.DestinationInfo();
         destination.setNomDestinatario(invoice.getCustomer());
-        destination.setDirDestinatario(invoice.getBranch_address());
+        destination.setDirDestinatario(invoice.getBranchAddress());
         destination.setTelDestinatario(customerPhone);
         destination.setCedDestinatario(
                 invoice.getNit() == null ? null : invoice.getNit().toString());

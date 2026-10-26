@@ -17,5 +17,5 @@ public interface ProceduresActivitiesService {
     ProceduresActivities delete(int id);
     
     List<ProceduresActivities>listarByIdCompany(int id_company);
-    List<ProceduresActivities>listarByTypeProcedure(String type_procedure);
+    List<ProceduresActivities>listarByTypeProcedure(String typeProcedure);
 }

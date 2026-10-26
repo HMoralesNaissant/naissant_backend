@@ -45,7 +45,7 @@ public class InvoicesHeaderServiceImp implements InvoicesHeaderService{
     }
 
     @Override
-    public List<InvoicesHeader> listarByInvoice(Double invoice) {
+    public List<InvoicesHeader> listarByInvoice(String invoice) {
         return repository.findByInvoice(invoice);
     }
 

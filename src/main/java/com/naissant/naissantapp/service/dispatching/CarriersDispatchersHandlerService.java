@@ -100,14 +100,14 @@ public class CarriersDispatchersHandlerService {
         if (status != '\0') {
             record.setStatus(String.valueOf(status));
         }
-        record.setUserCreate(dispatchsLabels.getUser_create());
-        record.setDateCreate(dispatchsLabels.getDate_create() == null
-                ? new Date() : dispatchsLabels.getDate_create());
+        record.setUserCreate(dispatchsLabels.getUserCreate());
+        record.setDateCreate(dispatchsLabels.getDateCreate() == null
+                ? new Date() : dispatchsLabels.getDateCreate());
 
         InvoicesHeader invoice = dispatchsLabels.getInvoiceId();
         if (invoice != null) {
-            record.setInvoice(invoice.getInvoice() == null ? null : invoice.getInvoice().floatValue());
-            record.setCustomerCode(invoice.getCustomer_code());
+            record.setInvoice(invoice.getInvoice());
+            record.setCustomerCode(invoice.getCustomerCode());
         }
         record.setDestination(dispatchsLabels.getDestinationId() == null
                 ? null : dispatchsLabels.getDestinationId().getDescription());

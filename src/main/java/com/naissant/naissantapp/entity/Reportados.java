@@ -6,6 +6,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,23 +29,31 @@ public class Reportados implements Auditable {
     @JoinColumn(name = "id_persona", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Persons personaId;
-    @Column
-    private Date fecha_reporte;
-    @Column
-    private String motivo_reporte;
-    @Column
-    private String observaciones_rep;
+    @Column(name = "fecha_reporte")
+    @JsonProperty("fecha_reporte")
+    private Date fechaReporte;
+    @Column(name = "motivo_reporte")
+    @JsonProperty("motivo_reporte")
+    private String motivoReporte;
+    @Column(name = "observaciones_rep")
+    @JsonProperty("observaciones_rep")
+    private String observacionesRep;
     @Column
     private char habilitado;
-    @Column
-    private String observaciones_hab;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "observaciones_hab")
+    @JsonProperty("observaciones_hab")
+    private String observacionesHab;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

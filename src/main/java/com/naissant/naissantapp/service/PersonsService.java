@@ -17,7 +17,7 @@ public interface PersonsService {
     Persons delete(int id);
     
     List<Persons>listarByIdCompany(int id_company);
-    List<Persons>listarByIdentification(Double identification);
+    List<Persons>listarByIdentification(String identification);
     List<Persons>listarByIdDepartments(int id_departments);
     List<Persons>listarByIdCity(int id_city);
 }

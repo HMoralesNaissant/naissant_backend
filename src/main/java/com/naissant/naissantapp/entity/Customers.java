@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,13 +28,16 @@ public class Customers implements Auditable {
     @JoinColumn(name = "id_person", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Persons personId;
-    @Column
+    @Column(name = "customer_code")
     @JoinColumn(name = "customer_code")
+    @JsonProperty("customer_code")
     private String customerCode;
-    @Column
-    private String company_name;
-    @Column
-    private String branch_address;
+    @Column(name = "company_name")
+    @JsonProperty("company_name")
+    private String companyName;
+    @Column(name = "branch_address")
+    @JsonProperty("branch_address")
+    private String branchAddress;
     @JoinColumn(name = "id_city_branch", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Citys cityBranchId;
@@ -43,8 +47,9 @@ public class Customers implements Auditable {
     @JoinColumn(name = "id_zone", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Zones zoneId;
-    @Column
-    private String type_person;
+    @Column(name = "type_person")
+    @JsonProperty("type_person")
+    private String typePerson;
     @JoinColumn(name = "id_economic_activity", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private EconomicActivity economicActivityId;
@@ -56,31 +61,42 @@ public class Customers implements Auditable {
     @JoinColumn(name = "id_sale_channel", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private SalesChannels saleChannelId;
-    @Column
-    private String tax_regime;
-    @Column
-    private String self_retaining;
-    @Column
-    private String type_customer;
+    @Column(name = "tax_regime")
+    @JsonProperty("tax_regime")
+    private String taxRegime;
+    @Column(name = "self_retaining")
+    @JsonProperty("self_retaining")
+    private String selfRetaining;
+    @Column(name = "type_customer")
+    @JsonProperty("type_customer")
+    private String typeCustomer;
     @Column
     private String currency;
-    @Column
-    private BigDecimal credit_limit;
-    @Column
-    private BigDecimal committed_limit;
-    @Column
-    private String fiscal_regime;
-    @Column
-    private String fiscal_responsibility;
+    @Column(name = "credit_limit")
+    @JsonProperty("credit_limit")
+    private BigDecimal creditLimit;
+    @Column(name = "committed_limit")
+    @JsonProperty("committed_limit")
+    private BigDecimal committedLimit;
+    @Column(name = "fiscal_regime")
+    @JsonProperty("fiscal_regime")
+    private String fiscalRegime;
+    @Column(name = "fiscal_responsibility")
+    @JsonProperty("fiscal_responsibility")
+    private String fiscalResponsibility;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
 }

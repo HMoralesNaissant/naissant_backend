@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,22 +31,29 @@ public class MeansPayments implements Auditable {
     private String description;
     @Column
     private String acronym;
-    @Column
-    private char request_bank;
-    @Column
-    private char request_appro;
-    @Column
-    private char request_franchises;
+    @Column(name = "request_bank")
+    @JsonProperty("request_bank")
+    private char requestBank;
+    @Column(name = "request_appro")
+    @JsonProperty("request_appro")
+    private char requestAppro;
+    @Column(name = "request_franchises")
+    @JsonProperty("request_franchises")
+    private char requestFranchises;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     public void add() {
         throw new UnsupportedOperationException("Not supported yet."); 

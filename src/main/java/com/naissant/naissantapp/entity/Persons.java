@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,13 +33,15 @@ public class Persons implements Auditable {
     private String surnames;
     @Column
     private Double identification;
-    @Column
-    private String type_identification;
+    @Column(name = "type_identification")
+    @JsonProperty("type_identification")
+    private String typeIdentification;
     @JoinColumn(name = "id_city_exp", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Citys cityExpId;
-    @Column
-    private Date date_birth;
+    @Column(name = "date_birth")
+    @JsonProperty("date_birth")
+    private Date dateBirth;
     @Column
     private String phone;
     @Column
@@ -57,14 +60,18 @@ public class Persons implements Auditable {
     private char sex;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 
     public void add() {
         throw new UnsupportedOperationException("Not supported yet."); 

@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,27 +29,32 @@ public class InvoicesDetail implements Auditable {
     @JoinColumn(name = "id_invoice", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private InvoicesHeader invoiceId;
-    @Column
-    private String code_product;
+    @Column(name = "code_product")
+    @JsonProperty("code_product")
+    private String codeProduct;
     @Column
     private String product;
     @Column
-    private Double quantity;
-    @Column
-    private BigDecimal unit_price;
+    private Integer quantity;
+    @Column(name = "unit_price")
+    @JsonProperty("unit_price")
+    private BigDecimal unitPrice;
     @Column
     private BigDecimal total;
     @Column
-    private Double docentry;
+    private String docentry;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
-
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 }

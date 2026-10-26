@@ -5,6 +5,7 @@
 
 package com.naissant.naissantapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,48 +30,61 @@ public class InvoicesHeader implements Auditable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Company companyId;
     @Column
-    private Integer invoice;
+    private String invoice;
+    @Column(name = "invoice_date")
+    @JsonProperty("invoice_date")
+    private Date invoiceDate;
+    @Column(name = "customer_code")
+    @JsonProperty("customer_code")
+    private String customerCode;
     @Column
-    private Date invoice_date;
-    @Column
-    private String customer_code;
-    @Column
-    private Integer nit;
+    private String nit;
     @Column
     private String customer;
-    @Column
-    private String branch_address;
-    @Column
-    private String payment_forms;
-    @Column
-    private Integer total_items;
-    @Column
-    private Integer total_units;
-    @Column
-    private Date expiration_date;
+    @Column(name = "branch_address")
+    @JsonProperty("branch_address")
+    private String branchAddress;
+    @Column(name = "payment_forms")
+    @JsonProperty("payment_forms")
+    private String paymentForms;
+    @Column(name = "total_items")
+    @JsonProperty("total_items")
+    private Integer totalItems;
+    @Column(name = "total_units")
+    @JsonProperty("total_units")
+    private Integer totalUnits;
+    @Column(name = "expiration_date")
+    @JsonProperty("expiration_date")
+    private Date expirationDate;
     @Column
     private BigDecimal subtotal;
     @Column
     private BigDecimal iva;
     @Column
     private BigDecimal total;
-    @Column
-    private Integer orders_num;
-    @Column
-    private Integer advisor_code;
+    @Column(name = "orders_num")
+    @JsonProperty("orders_num")
+    private String ordersNum;
+    @Column(name = "advisor_code")
+    @JsonProperty("advisor_code")
+    private String advisorCode;
     @Column
     private String observations;
-    @Column
-    private Integer docentry;
+    @Column(name = "docentry")
+    @JsonProperty("docentry")
+    private String docEntry;
     @Column
     private char status;
-    @Column
-    private String user_create;
-    @Column
-    private Date date_create;
-    @Column
-    private String user_update;
-    @Column
-    private Date date_update;
-
+    @Column(name = "user_create")
+    @JsonProperty("user_create")
+    private String userCreate;
+    @Column(name = "date_create")
+    @JsonProperty("date_create")
+    private Date dateCreate;
+    @Column(name = "user_update")
+    @JsonProperty("user_update")
+    private String userUpdate;
+    @Column(name = "date_update")
+    @JsonProperty("date_update")
+    private Date dateUpdate;
 }

@@ -13,19 +13,19 @@ public final class Audit {
     /** Fills the create and update audit fields. */
     public static <T extends Auditable> T created(T entity) {
         Date now = new Date();
-        entity.setDate_create(now);
-        entity.setDate_update(now);
+        entity.setDateCreate(now);
+        entity.setDateUpdate(now);
         CurrentUser.get().ifPresent(u -> {
-            entity.setUser_create(u.username());
-            entity.setUser_update(u.username());
+            entity.setUserCreate(u.username());
+            entity.setUserUpdate(u.username());
         });
         return entity;
     }
 
     /** Fills the update audit fields, leaving the create ones untouched. */
     public static <T extends Auditable> T updated(T entity) {
-        entity.setDate_update(new Date());
-        CurrentUser.get().ifPresent(u -> entity.setUser_update(u.username()));
+        entity.setDateUpdate(new Date());
+        CurrentUser.get().ifPresent(u -> entity.setUserUpdate(u.username()));
         return entity;
     }
 }
