@@ -130,7 +130,7 @@ public class ProductsController {
         }
     }
     
-    @GetMapping("/{product_Id}/photo")
+    @GetMapping("/{product_id}/photo")
     public ResponseEntity getProfilePicture(@PathVariable(name = "product_id") Integer productId) {
         try {
             Resource file = service.downloadProfilePicture(productId);
