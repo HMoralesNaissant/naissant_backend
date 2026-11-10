@@ -32,7 +32,7 @@ public class Persons implements Auditable {
     @Column
     private String surnames;
     @Column
-    private Double identification;
+    private String identification;
     @Column(name = "type_identification")
     @JsonProperty("type_identification")
     private String typeIdentification;
