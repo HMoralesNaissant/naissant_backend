@@ -97,6 +97,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
         request.setMcaDocInternacional(international == null ? 0 : international);
         String cartaPorte = readValue(additionalInfo, String.class, "con_cartaporte");
         request.setConCartaporte(cartaPorte == null ? "0" : cartaPorte);
+
         EnviaAccountConfiguration accountConfiguration = getAccountConfiguration(dispatchsLabels);
         if (accountConfiguration != null) {
             request.setCodRegionalCta(accountConfiguration.getCodRegionalCta());
@@ -104,6 +105,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
         }
         request.setInfoOrigen(createOrigin(dispatchsLabels));
         request.setInfoDestino(createDestination(dispatchsLabels));
+
         EnviaDispatchRequest.ContentInfo content = createContent(dispatchsLabels);
         String diceContener = readValue(additionalInfo, String.class, "dice_contener");
         String textoGuia = readValue(additionalInfo, String.class, "texto_guia");
@@ -115,9 +117,14 @@ public class EnviaDispatchService implements CarrierDispatchService {
             content.setDiceContener(diceContener);
             content.setTextoGuia(textoGuia);
             content.setCentroCosto(centroCosto);
-            content.setValorProducto("0");
+
+            String productValue = ('S' == dispatchsLabels.getCarrierAccId().getCollection()) ?
+                    dispatchsLabels.getInvoiceId().getTotal().toString() : "0";
+            content.setValorProducto(productValue);
         }
         request.setInfoContenido(content);
+
+
         request.setNumeroGuia("");
         request.setGenerarOs(readValue(additionalInfo, String.class, "generar_os"));
         return request;
