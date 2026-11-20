@@ -27,7 +27,7 @@ public class EnviaDispatchRequest {
     @JsonProperty("mpesovolumen_k")
     private BigDecimal mpesoVolumenK;
     @JsonProperty("valor_declarado")
-    private BigDecimal valorDeclarado;
+    private Integer valorDeclarado;
     @JsonProperty("mca_nosabado")
     private Integer mcaNoSabado;
     @JsonProperty("mca_docinternacional")

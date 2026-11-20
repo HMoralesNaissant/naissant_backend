@@ -81,7 +81,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
                 ? null : dispatchsLabels.getDestinationId().getCodDane());
         request.setNumUnidades(dispatchsLabels.getBoxes());
         request.setMpesoRealK(dispatchsLabels.getWeightKg());
-        request.setValorDeclarado(dispatchsLabels.getDeclaredValue());
+        request.setValorDeclarado(dispatchsLabels.getDeclaredValue().intValue());
         request.setCodCuenta(dispatchsLabels.getCarrierAccId() == null
                 ? null : dispatchsLabels.getCarrierAccId().getAccounts());
 
