@@ -37,7 +37,7 @@ public class Products implements Auditable {
     private String barCode;
     @Column(columnDefinition = "text")
     private String content;
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String benefits;
     @JoinColumn(name = "id_presentation", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
