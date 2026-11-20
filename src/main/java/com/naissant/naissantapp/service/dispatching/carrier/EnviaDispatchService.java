@@ -22,6 +22,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 
 @Service
@@ -119,7 +121,7 @@ public class EnviaDispatchService implements CarrierDispatchService {
             content.setCentroCosto(centroCosto);
 
             Integer productValue = ('S' == dispatchsLabels.getCarrierAccId().getCollection()) ?
-                    dispatchsLabels.getInvoiceId().getTotal().intValue() : 0;
+                    dispatchsLabels.getInvoiceId().getTotal().setScale(2, RoundingMode.HALF_UP).intValue() : 0;
             content.setValorProducto(productValue);
         }
         request.setInfoContenido(content);
