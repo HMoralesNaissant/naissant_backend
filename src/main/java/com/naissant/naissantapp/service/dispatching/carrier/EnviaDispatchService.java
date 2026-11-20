@@ -121,11 +121,8 @@ public class EnviaDispatchService implements CarrierDispatchService {
             content.setCentroCosto(centroCosto);
 
             Integer productValue = ('S' == dispatchsLabels.getCarrierAccId().getCollection()) ?
-                    dispatchsLabels.getInvoiceId().getTotal().intValue() : 0;
-            content.setValorProducto(productValue);
-            /* Integer productValue = ('S' == dispatchsLabels.getCarrierAccId().getCollection()) ?
                     dispatchsLabels.getInvoiceId().getTotal().setScale(2, RoundingMode.HALF_UP).intValue() : 0;
-            content.setValorProducto(productValue);*/
+            content.setValorProducto(productValue);
         }
         request.setInfoContenido(content);
 
