@@ -97,6 +97,6 @@ public class EnviaDispatchRequest {
         @JsonProperty("centrocosto")
         private String centroCosto;
         @JsonProperty("valorproducto")
-        private String valorProducto;
+        private Integer valorProducto;
     }
 }
